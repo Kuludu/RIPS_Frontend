@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
+import Default from "@/components/Default"
 import Line from "@/components/Line";
 import Login from "@/components/Login";
 import {BootstrapVue, IconsPlugin} from "bootstrap-vue";
@@ -18,9 +19,7 @@ const router = new VueRouter({
     {
       path: '/',
       name: 'default',
-      component: {
-        template: '<div>Default</div>>'
-      }
+      component: Default
     },
     {
       path: '/line',
