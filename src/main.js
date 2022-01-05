@@ -1,10 +1,11 @@
-import Vue from 'vue'
-import App from './App.vue'
-import Default from "@/components/Default"
-import Line from "@/components/Line";
+import Vue from 'vue';
+import App from './App.vue';
+import Default from "@/components/Default";
+import LineStatus from "@/components/LineStatus";
 import Login from "@/components/Login";
 import {BootstrapVue, IconsPlugin} from "bootstrap-vue";
-import VueRouter from 'vue-router'
+import VueRouter from 'vue-router';
+import ECharts from "vue-echarts";
 
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue'
@@ -12,6 +13,7 @@ import 'bootstrap-vue/dist/bootstrap-vue'
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 Vue.use(VueRouter)
+Vue.component('v-chart', ECharts)
 Vue.config.productionTip = false
 
 const router = new VueRouter({
@@ -24,7 +26,7 @@ const router = new VueRouter({
     {
       path: '/line',
       name: 'line',
-      component: Line
+      component: LineStatus
     },
     {
       path: '/admin/login',
