@@ -1,7 +1,10 @@
 <template>
   <div>
+    <b-sidebar class="text-center" visible no-header-close>
+      <router-link to="/admin/parameter">参数设置</router-link>
+      <router-link to="/admin/demo">测试演示</router-link>
+    </b-sidebar>
     <div class="container col-md-3" style="margin-top: 20px">
-      <b-button variant="outline-primary" href="/#/admin/demo">测试演示</b-button>
       <h1>系统参数设置</h1>
       <small>此参数应由专业人员配置，站点工作人员请勿随意更改！</small>
       <form @submit="submit">
@@ -49,5 +52,11 @@ export default {
 </script>
 
 <style scoped>
-
+a, a:hover {
+  text-decoration: none;
+  color: black;
+  border-style: solid;
+  border-radius: 25px;
+  border-color: black;
+}
 </style>
