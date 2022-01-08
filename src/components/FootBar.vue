@@ -1,9 +1,11 @@
 <template>
   <div>
     <footer class="bg-light">
-      <div class="p-3 footer" style="background-color: rgba(0, 0, 0, 0.2);">
-        加载时间（本地）：{{ getTime() }}
-      </div>
+      <b-row align-h="center">
+        <b-col cols="2" class="p-2 footer" style="background-color: rgba(0, 0, 0, 0.2);">
+          加载时间（本地）：{{ getTime() }}
+        </b-col>
+      </b-row>
     </footer>
   </div>
 </template>
