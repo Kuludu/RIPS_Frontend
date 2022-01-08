@@ -2,7 +2,7 @@
   <div>
     <footer class="bg-light">
       <b-row align-h="center">
-        <b-col cols="2" class="p-2 footer" style="background-color: rgba(0, 0, 0, 0.2);">
+        <b-col cols="3" class="p-2 footer text-center" style="background-color: rgba(0, 0, 0, 0.2);">
           加载时间（本地）：{{ getTime() }}
         </b-col>
       </b-row>
