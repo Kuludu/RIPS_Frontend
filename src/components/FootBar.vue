@@ -2,7 +2,7 @@
   <div>
     <footer class="bg-light">
       <div class="p-3 footer" style="background-color: rgba(0, 0, 0, 0.2);">
-        加载时间：
+        加载时间：{{ getTime() }}
       </div>
     </footer>
   </div>
@@ -10,7 +10,12 @@
 
 <script>
 export default {
-  name: "FootBar"
+  name: "FootBar",
+  methods: {
+    getTime: function () {
+      return new Date().toLocaleString();
+    }
+  }
 }
 </script>
 
