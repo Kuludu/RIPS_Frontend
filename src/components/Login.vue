@@ -64,8 +64,6 @@ export default {
         else
             this.$router.push({path: '/admin/parameter'})
       }).catch(() => {
-        // 调试用
-        this.$router.push({path: '/admin/parameter'})
         alert("后端服务器错误")
       })
     }
