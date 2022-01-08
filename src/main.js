@@ -9,16 +9,22 @@ import Parameter from "@/components/Parameter";
 import Demo from "@/components/Demo";
 import {BootstrapVue, IconsPlugin} from "bootstrap-vue";
 import VueRouter from 'vue-router';
+import axios from "axios";
 import ECharts from "vue-echarts";
+import api from "@/config/server";
 
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue'
+
+axios.defaults.withCredentials = true
 
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 Vue.use(VueRouter)
 Vue.component('v-chart', ECharts)
 Vue.config.productionTip = false
+Vue.prototype.axios = axios
+Vue.prototype.API = api
 
 const router = new VueRouter({
   routes: [

@@ -1,7 +1,7 @@
 <template>
   <div class="container col-md-3" style="margin-top: 20px">
     <h1>管理员登陆</h1>
-    <b-form>
+    <b-form @submit="login">
       <b-form-group
           id="username-group"
           label="用户名:"
@@ -36,6 +36,8 @@
 </template>
 
 <script>
+import qs from "qs";
+
 export default {
   name: "Login",
   data: function () {
@@ -44,6 +46,28 @@ export default {
         username: "",
         password: ""
       }
+    }
+  },
+  methods: {
+    login: function (event) {
+      event.preventDefault()
+      this.axios({
+        method: "post",
+        url: this.API.server + "/api/login",
+        data: qs.stringify({
+          username: this.form.username,
+          password: this.form.password
+        })
+      }).then(resp => {
+        if (resp === "fail")
+          alert("用户名或密码错误！")
+        else
+            this.$router.push({path: '/admin/parameter'})
+      }).catch(() => {
+        // 调试用
+        this.$router.push({path: '/admin/parameter'})
+        alert("后端服务器错误")
+      })
     }
   }
 }
