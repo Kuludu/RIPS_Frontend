@@ -8,9 +8,7 @@
       <h1>系统参数设置</h1>
       <small>此参数应由专业人员配置，站点工作人员请勿随意更改！</small>
       <form @submit="submit">
-        <b-textarea v-model="form.config" style="height: 200px">
-
-        </b-textarea>
+        <b-textarea v-model="form.config" style="height: 200px" placeholder="如果您不清楚如何配置，请勿修改！"/>
         <b-button type="submit" variant="primary" style="margin-top: 10px">提交</b-button>
       </form>
     </div>
@@ -43,7 +41,8 @@ export default {
           alert("配置保存错误！")
         else
           alert("配置保存成功！")
-      }).catch(() => {
+      }).catch(e => {
+        console.log(e)
         alert("后端服务器错误")
       })
     }

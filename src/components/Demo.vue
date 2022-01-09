@@ -59,7 +59,8 @@ export default {
           alert("演示数据上传错误！")
         else
           alert("演示数据上传成功！")
-      }).catch(() => {
+      }).catch(e => {
+        console.log(e)
         alert("后端服务器错误")
       })
     }
