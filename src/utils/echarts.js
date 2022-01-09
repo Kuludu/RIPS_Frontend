@@ -1,11 +1,11 @@
 import * as echarts from "echarts/core";
-import { BarChart, PieChart, LineChart } from "echarts/charts";
+import { MapChart, GaugeChart } from "echarts/charts";
 import {
     TitleComponent,
     TooltipComponent,
     GridComponent,
     LegendComponent,
-    GeoComponent
+    VisualMapComponent
 } from "echarts/components";
 import { CanvasRenderer } from "echarts/renderers";
 
@@ -15,10 +15,9 @@ echarts.use([
     TooltipComponent,
     GridComponent,
     LegendComponent,
-    GeoComponent,
-    BarChart,
-    PieChart,
-    LineChart,
+    VisualMapComponent,
+    MapChart,
+    GaugeChart,
     CanvasRenderer,
 ]);
 
