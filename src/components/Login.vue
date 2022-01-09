@@ -63,7 +63,8 @@ export default {
           alert("用户名或密码错误！")
         else
             this.$router.push({path: '/admin/parameter'})
-      }).catch(() => {
+      }).catch(e => {
+        console.log(e)
         alert("后端服务器错误")
       })
     }
