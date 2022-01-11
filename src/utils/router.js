@@ -1,0 +1,78 @@
+import Default from "@/components/Default";
+import LineStatus from "@/components/LineStatus";
+import SiteStatus from "@/components/SiteStatus";
+import Situation from "@/components/Situation";
+import History from "@/components/History";
+import Login from "@/components/Login";
+import Parameter from "@/components/Parameter";
+import Demo from "@/components/Demo";
+
+
+const routes = [
+    {
+        path: '/',
+        name: 'default',
+        component: Default,
+        meta: {
+            title: '轨道交通智能预测系统',
+        }
+    },
+    {
+        path: '/line',
+        name: 'line',
+        component: LineStatus,
+        meta: {
+            title: '轨道交通智能预测系统-线路流量',
+        }
+    },
+    {
+        path: '/site',
+        name: 'site',
+        component: SiteStatus,
+        meta: {
+            title: '轨道交通智能预测系统-站点流量',
+        }
+    },
+    {
+        path: '/situation',
+        name: 'situation',
+        component: Situation,
+        meta: {
+            title: '轨道交通智能预测系统-轨交特情',
+        }
+    },
+    {
+        path: '/history',
+        name: 'history',
+        component: History,
+        meta: {
+            title: '轨道交通智能预测系统-历史数据',
+        }
+    },
+    {
+        path: '/admin/login',
+        name: 'login',
+        component: Login,
+        meta: {
+            title: '轨道交通智能预测系统-管理登陆',
+        }
+    },
+    {
+        path: '/admin/parameter',
+        name: 'parameter',
+        component: Parameter,
+        meta: {
+            title: '轨道交通智能预测系统-参数设置',
+        }
+    },
+    {
+        path: '/admin/demo',
+        name: 'demo',
+        component: Demo,
+        meta: {
+            title: '轨道交通智能预测系统-演示',
+        }
+    }
+]
+
+export default routes;

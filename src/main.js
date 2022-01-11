@@ -1,18 +1,11 @@
 import Vue from 'vue';
 import App from './App.vue';
-import Default from "@/components/Default";
-import LineStatus from "@/components/LineStatus";
-import SiteStatus from "@/components/SiteStatus";
-import Situation from "@/components/Situation";
-import History from "@/components/History";
-import Login from "@/components/Login";
-import Parameter from "@/components/Parameter";
-import Demo from "@/components/Demo";
 import {BootstrapVue, IconsPlugin} from "bootstrap-vue";
 import VueRouter from 'vue-router';
 import axios from "axios";
 import api from "@/config/server";
 import echarts from '@/utils/echarts';
+import routes from '@/utils/router';
 
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue'
@@ -28,48 +21,13 @@ Vue.prototype.API = api
 Vue.prototype.echarts = echarts
 
 const router = new VueRouter({
-  routes: [
-    {
-      path: '/',
-      name: 'default',
-      component: Default
-    },
-    {
-      path: '/line',
-      name: 'line',
-      component: LineStatus
-    },
-    {
-      path: '/site',
-      name: 'site',
-      component: SiteStatus
-    },
-    {
-      path: '/situation',
-      name: 'situation',
-      component: Situation
-    },
-    {
-      path: '/history',
-      name: 'history',
-      component: History
-    },
-    {
-      path: '/admin/login',
-      name: 'login',
-      component: Login
-    },
-    {
-      path: '/admin/parameter',
-      name: 'parameter',
-      component: Parameter
-    },
-    {
-      path: '/admin/demo',
-      name: 'demo',
-      component: Demo
-    }
-  ]
+  routes: routes
+})
+router.beforeEach((to, from, next) => {
+  if (to.meta.title) {
+    document.title = to.meta.title
+  }
+  next()
 })
 
 new Vue({
