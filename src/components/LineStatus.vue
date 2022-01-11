@@ -1,6 +1,13 @@
 <template>
   <div>
-    <div id="line" style="height: 900px"></div>
+    <b-row style="margin-right: 0">
+      <b-col id="line" class="col-8" style="height: 900px" />
+      <b-col cols="4">
+        <b-table striped fixed :items="items" :fields="fields">
+          <template #table-caption>出入站数据</template>
+        </b-table>
+      </b-col>
+    </b-row>
   </div>
 </template>
 
@@ -9,8 +16,13 @@ import line_5 from '@/assets/line_5.svg';
 
 export default {
   name: "LineStatus",
-  data() {
-    return {}
+  data: function () {
+    return {
+      fields: ['入站', '出站', '时间'],
+      items: [
+
+      ]
+    }
   },
   mounted() {
     this.axios({
@@ -64,7 +76,7 @@ export default {
             name: '5号线站点',
             type: 'map',
             map: 'line_5',
-            center: [1000, 400],
+            center: [700, 400],
             selectedMode: false,
             emphasis: {
               label: {
