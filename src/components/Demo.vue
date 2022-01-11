@@ -4,7 +4,7 @@
       <router-link to="/admin/parameter">参数设置</router-link>
       <router-link to="/admin/demo">测试演示</router-link>
     </b-sidebar>
-    <div class="container col-md-2" style="margin-top: 20px">
+    <div class="container col-md-3" style="margin-top: 20px">
       <h1>测试演示</h1>
       <small>此功能仅供测试与演示使用，生产环境勿操作！</small>
       <b-form @submit="submit">
@@ -15,7 +15,8 @@
           <b-form-select v-model="form.situation" label="轨交特情">
             <b-form-select-option value="0">请选择特情</b-form-select-option>
             <b-form-select-option value="1">雨雪特情</b-form-select-option>
-            <b-form-select-option value="2" disabled>暴恐特情</b-form-select-option>
+            <b-form-select-option value="2" disabled>暴力恐怖事件</b-form-select-option>
+            <b-form-select-option value="3" disabled>设备故障</b-form-select-option>
           </b-form-select>
         </b-form-group>
         <b-form-group
