@@ -5,6 +5,7 @@
       <b-nav-item><b-button variant="outline-primary"><router-link to="/line">线路流量</router-link></b-button></b-nav-item>
       <b-nav-item><b-button variant="outline-primary"><router-link to="/site">站点流量</router-link></b-button></b-nav-item>
       <b-nav-item><b-button variant="outline-primary"><router-link to="/situation">轨交特情</router-link></b-button></b-nav-item>
+      <b-nav-item><b-button variant="outline-primary"><router-link to="/history">历史数据</router-link></b-button></b-nav-item>
       <b-nav-item><b-button variant="outline-primary"><router-link to="/admin/login">管理登陆</router-link></b-button></b-nav-item>
     </b-navbar-nav>
   </b-navbar>

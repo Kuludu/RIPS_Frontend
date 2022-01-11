@@ -4,6 +4,7 @@ import Default from "@/components/Default";
 import LineStatus from "@/components/LineStatus";
 import SiteStatus from "@/components/SiteStatus";
 import Situation from "@/components/Situation";
+import History from "@/components/History";
 import Login from "@/components/Login";
 import Parameter from "@/components/Parameter";
 import Demo from "@/components/Demo";
@@ -47,6 +48,11 @@ const router = new VueRouter({
       path: '/situation',
       name: 'situation',
       component: Situation
+    },
+    {
+      path: '/history',
+      name: 'history',
+      component: History
     },
     {
       path: '/admin/login',
