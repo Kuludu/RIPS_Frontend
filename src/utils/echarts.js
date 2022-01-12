@@ -1,5 +1,5 @@
 import * as echarts from "echarts/core";
-import { MapChart, GaugeChart, LineChart, BarChart, GraphChart } from "echarts/charts";
+import { MapChart, GaugeChart, LineChart, BarChart, GraphChart, PieChart, RadarChart } from "echarts/charts";
 import {
     TitleComponent,
     TooltipComponent,
@@ -15,6 +15,8 @@ echarts.use([
     GridComponent,
     LegendComponent,
     VisualMapComponent,
+    RadarChart,
+    PieChart,
     GraphChart,
     BarChart,
     LineChart,

@@ -15,7 +15,7 @@
         </p>
       </b-col>
       <b-col cols="8">
-        <h2>b.工作日和周末客流分析</h2>
+        <h2>b.工作日与节假日客流分析</h2>
         <div id="c2" class="chart" />
       </b-col>
       <b-col cols="2">
