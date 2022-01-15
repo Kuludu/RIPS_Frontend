@@ -1,5 +1,5 @@
 <template>
-  <div class="container col-md-3" style="margin-top: 20px">
+  <b-container class="col-3" style="margin-top: 20px">
     <h1>管理员登陆</h1>
     <b-form @submit="login">
       <b-form-group
@@ -32,7 +32,7 @@
 
       <b-button type="submit" variant="primary" style="margin-top: 10px">提交</b-button>
     </b-form>
-  </div>
+  </b-container>
 </template>
 
 <script>
@@ -53,7 +53,7 @@ export default {
       event.preventDefault()
       this.axios({
         method: "post",
-        url: this.API.server + "/api/login",
+        url: "/api/login",
         data: qs.stringify({
           username: this.form.username,
           password: this.form.password
