@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-row style="margin-right: 0">
+    <b-row class="mx-0">
       <b-col id="line" class="col-8" style="height: 900px" />
       <b-col cols="4">
         <b-table striped fixed :items="items" :fields="fields">
