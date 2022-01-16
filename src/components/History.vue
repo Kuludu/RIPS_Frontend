@@ -122,7 +122,7 @@ export default {
     let c6 = this.echarts.init(document.getElementById("c6"));
     this.axios({
       method: "get",
-      url: this.API.server + "/api/history",
+      url: "/api/history",
       responseType: "json",
     }).then(resp => {
       c1.setOption(resp.data.c1);
