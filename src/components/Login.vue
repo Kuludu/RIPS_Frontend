@@ -59,7 +59,7 @@ export default {
           password: this.form.password
         })
       }).then(resp => {
-        if (resp === "fail")
+        if (resp.data !== "success")
           alert("用户名或密码错误！")
         else
             this.$router.push({path: '/admin/parameter'})
