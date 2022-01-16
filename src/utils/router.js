@@ -1,5 +1,6 @@
 import Default from "@/components/Default";
 import LineStatus from "@/components/LineStatus";
+import SiteNav from "@/components/SiteNav";
 import SiteStatus from "@/components/SiteStatus";
 import Situation from "@/components/Situation";
 import History from "@/components/History";
@@ -27,6 +28,14 @@ const routes = [
     },
     {
         path: '/site',
+        name: 'site_nav',
+        component: SiteNav,
+        meta: {
+            title: '轨道交通智能预测系统-站点导航',
+        }
+    },
+    {
+        path: '/site/:id',
         name: 'site',
         component: SiteStatus,
         meta: {
