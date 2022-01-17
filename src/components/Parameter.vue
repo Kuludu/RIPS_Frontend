@@ -1,8 +1,8 @@
 <template>
   <div>
     <b-sidebar class="text-center" visible no-header-close>
-      <router-link to="/admin/parameter">参数设置</router-link>
-      <router-link to="/admin/demo">测试演示</router-link>
+      <router-link to="/admin/parameter"><b-button pill variant="primary">参数设置</b-button></router-link>
+      <router-link to="/admin/situation"><b-button pill variant="primary">特情管理</b-button></router-link>
     </b-sidebar>
     <b-container class="col-3" style="margin-top: 20px">
       <h1>系统参数设置</h1>
@@ -37,13 +37,14 @@ export default {
           config: this.form.config,
         })
       }).then(resp => {
-        if (resp === "fail")
+        if (resp.data !== "success")
           alert("配置保存错误！")
         else
           alert("配置保存成功！")
       }).catch(e => {
         console.log(e)
         alert("后端服务器错误")
+        this.$router.push({path: '/admin/login'})
       })
     }
   }
@@ -51,11 +52,5 @@ export default {
 </script>
 
 <style scoped>
-a, a:hover {
-  text-decoration: none;
-  color: black;
-  border-style: solid;
-  border-radius: 25px;
-  border-color: black;
-}
+
 </style>
