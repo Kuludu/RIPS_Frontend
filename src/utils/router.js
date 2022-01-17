@@ -6,7 +6,7 @@ import Situation from "@/components/Situation";
 import History from "@/components/History";
 import Login from "@/components/Login";
 import Parameter from "@/components/Parameter";
-import Demo from "@/components/Demo";
+import SituManage from "@/components/SituManage";
 
 
 const routes = [
@@ -75,11 +75,11 @@ const routes = [
         }
     },
     {
-        path: '/admin/demo',
-        name: 'demo',
-        component: Demo,
+        path: '/admin/situation',
+        name: 'situManage',
+        component: SituManage,
         meta: {
-            title: '轨道交通智能预测系统-演示',
+            title: '轨道交通智能预测系统-特情管理',
         }
     }
 ]
