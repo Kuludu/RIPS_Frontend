@@ -8,7 +8,7 @@
         <b-button pill variant="primary">特情管理</b-button>
       </router-link>
     </b-sidebar>
-    <div class="container col-md-6" style="margin-top: 20px">
+    <div class="container col-md-6 mt-4">
       <h1>特情管理</h1>
       <b-card title="特情面板">
         <b-table
@@ -41,18 +41,18 @@
         </p>
       </b-card>
 
-      <b-card title="发布特情">
+      <b-card title="发布特情" class="mt-3">
         <b-form-group
-            class="col-3"
+            class="col-4"
             label="特情名称:"
         >
           <b-form-input v-model="name" placeholder="请输入特情名称"></b-form-input>
         </b-form-group>
         <b-form-group
-            class="col-3"
+            class="col-5"
             label="发布时间:"
         >
-          <b-form-datepicker v-model="date" locale="zh"/>
+          <b-form-datepicker v-model="date" menu-class="w-100" calendar-width="100%" locale="zh"/>
           <b-form-timepicker v-model="time" locale="zh"/>
         </b-form-group>
         <b-button style="margin-top: 10px" variant="primary" @click="createSituation">发布</b-button>
