@@ -58,7 +58,7 @@
               format="YYYY-MM-DD HH:mm"
               label="请选择发布时间"/>
         </b-form-group>
-        <b-button style="margin-top: 10px" variant="primary" @click="createSituation">发布</b-button>
+        <b-button variant="primary" @click="createSituation">发布</b-button>
       </b-card>
     </div>
   </div>
