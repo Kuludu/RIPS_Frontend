@@ -41,7 +41,7 @@
         </p>
       </b-card>
 
-      <b-card title="发布特情" class="mt-3">
+      <b-card class="mt-3" title="发布特情">
         <b-form-group
             class="col-4"
             label="特情名称:"
@@ -52,8 +52,11 @@
             class="col-5"
             label="发布时间:"
         >
-          <b-form-datepicker v-model="date" menu-class="w-100" calendar-width="100%" locale="zh"/>
-          <b-form-timepicker v-model="time" locale="zh"/>
+          <VueCtkDateTimePicker
+              v-model="datetime"
+              button-now-translation="现在"
+              format="YYYY-MM-DD HH:mm"
+              label="请选择发布时间"/>
         </b-form-group>
         <b-button style="margin-top: 10px" variant="primary" @click="createSituation">发布</b-button>
       </b-card>
@@ -68,9 +71,8 @@ export default {
   name: "SituManage",
   data: function () {
     return {
-      name: "",
-      date: "",
-      time: "",
+      name: null,
+      datetime: null,
       fields: ['ID', '是否激活', '特情名称', '发布时间'],
       items: [],
       selected: []
@@ -182,13 +184,13 @@ export default {
       }
     },
     createSituation() {
-      if (this.name != null && this.date !=null && this.time != null) {
+      if (this.name != null && this.datetime != null) {
         this.axios({
           method: "post",
           url: "/api/situation/create",
           data: qs.stringify({
             name: this.name,
-            datetime: this.date + " " + this.time
+            datetime: this.datetime
           })
         }).then(resp => {
           if (resp.data !== "success")
