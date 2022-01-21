@@ -77,7 +77,7 @@ export default {
         },
         xAxis: {
           type: 'category',
-          data: ['T1', 'T2', 'T3', 'T4']
+          data: ['前45～30分钟流量', '前15～30分钟流量', '前15分钟流量', '预计15分内流量']
         },
         yAxis: {
           type: 'value'
@@ -88,6 +88,7 @@ export default {
             type: 'gauge',
             center: ['20%', '25%'],
             radius: '35%',
+            max: 1,
             data: [
               {
                 value: resp.data["realPressure"],
@@ -100,6 +101,7 @@ export default {
             type: 'gauge',
             center: ['20%', '65%'],
             radius: '35%',
+            max: 1,
             data: [
               {
                 value: resp.data["prePressure"],
