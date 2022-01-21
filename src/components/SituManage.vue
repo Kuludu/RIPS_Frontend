@@ -182,22 +182,27 @@ export default {
       }
     },
     createSituation() {
-      this.axios({
-        method: "post",
-        url: "/api/situation/create",
-        data: qs.stringify({
-          name: this.name,
-          datetime: this.date + " " + this.time
+      if (this.name != null && this.date !=null && this.time != null) {
+        this.axios({
+          method: "post",
+          url: "/api/situation/create",
+          data: qs.stringify({
+            name: this.name,
+            datetime: this.date + " " + this.time
+          })
+        }).then(resp => {
+          if (resp.data !== "success")
+            alert("特情发布错误！")
+          else
+            alert("特情发布成功！")
+          this.fetchAll()
+        }).catch(e => {
+          console.log(e)
+          alert("后端服务器错误")
         })
-      }).then(resp => {
-        if (resp.data !== "success")
-          alert("特情发布错误！")
-        else
-          alert("特情发布成功！")
-      }).catch(e => {
-        console.log(e)
-        alert("后端服务器错误")
-      })
+      } else {
+        alert("请填写完整信息")
+      }
     }
   }
 }
