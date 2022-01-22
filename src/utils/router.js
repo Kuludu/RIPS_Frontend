@@ -44,7 +44,7 @@ const routes = [
         }
     },
     {
-        path: '/site/:id',
+        path: '/site/:line/:site',
         name: 'site',
         component: SiteStatus,
         meta: {

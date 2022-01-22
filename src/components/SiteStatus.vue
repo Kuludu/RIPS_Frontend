@@ -6,7 +6,7 @@
       </b-col>
       <b-col>
         <b-table :fields="fields" :items="items" fixed striped>
-          <template #table-caption>15min出入站数据</template>
+          <template #table-caption>5min出入站数据</template>
         </b-table>
       </b-col>
     </b-row>
@@ -54,7 +54,7 @@ export default {
     })
     this.axios({
       method: "get",
-      url: "/api/site/" + this.$route.params.id,
+      url: "/api/site/" + this.$route.params.line + "/" + this.$route.params.site,
     }).then(resp => {
       this.items = resp.data["traffic"]
       site.setOption({

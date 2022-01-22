@@ -4,7 +4,7 @@
       <b-col id="line" class="col-8" style="height: 900px" />
       <b-col cols="4">
         <b-table striped fixed :items="items" :fields="fields">
-          <template #table-caption>15min出入站数据</template>
+          <template #table-caption>5min出入站数据</template>
         </b-table>
       </b-col>
     </b-row>
