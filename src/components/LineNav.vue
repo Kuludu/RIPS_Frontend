@@ -47,7 +47,7 @@
         <b-card :img-src="require('@/assets/line.png')" title="线路5">
           <p>线路5贯穿三江市交通要道，交通情况复杂。</p>
           <p>
-            <router-link to="/site/5">
+            <router-link to="/line/5">
               <b-button variant="info">查看线路</b-button>
             </router-link>
           </p>
