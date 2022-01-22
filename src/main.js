@@ -8,6 +8,7 @@ import echarts from '@/utils/echarts';
 import routes from '@/utils/router';
 
 import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
 import 'bootstrap-vue/dist/bootstrap-vue'
 import 'vue-ctk-date-time-picker/dist/vue-ctk-date-time-picker.css';
 

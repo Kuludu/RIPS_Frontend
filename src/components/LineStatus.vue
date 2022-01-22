@@ -1,14 +1,14 @@
 <template>
   <div>
     <b-row class="mx-0">
-      <b-col id="line" class="col-8" style="height: 900px" />
+      <b-col id="line" class="col-8" style="height: 900px"/>
       <b-col cols="4">
-        <b-table striped fixed :items="items" :fields="fields">
+        <b-table :fields="fields" :items="items" fixed no-border-collapse sticky-header="800px" striped>
           <template #table-caption>5min出入站数据</template>
         </b-table>
       </b-col>
     </b-row>
-    <b-modal header-bg-variant="danger" ref="fail" title="轨道交通智能预测系统" hide-backdrop>
+    <b-modal ref="fail" header-bg-variant="danger" hide-backdrop title="轨道交通智能预测系统">
       <p>后端服务器错误。</p>
     </b-modal>
   </div>

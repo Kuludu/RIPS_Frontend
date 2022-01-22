@@ -5,12 +5,12 @@
         <div id="site" style="height: 900px"></div>
       </b-col>
       <b-col>
-        <b-table :fields="fields" :items="items" fixed striped>
+        <b-table :fields="fields" :items="items" fixed no-border-collapse sticky-header="800px" striped>
           <template #table-caption>5min出入站数据</template>
         </b-table>
       </b-col>
     </b-row>
-    <b-modal header-bg-variant="danger" ref="fail" title="轨道交通智能预测系统" hide-backdrop>
+    <b-modal ref="fail" header-bg-variant="danger" hide-backdrop title="轨道交通智能预测系统">
       <p>后端服务器错误。</p>
     </b-modal>
   </div>
