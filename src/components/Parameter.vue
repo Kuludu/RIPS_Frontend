@@ -21,10 +21,19 @@
           </b-col>
         </b-row>
         <p class="mt-3">当前站点压力阈值：{{ this.site_pressure_threshold }}</p>
-        <b-form-input class="col-3" placeholder="请输入新设置的压力阈值" type="number" v-model="new_threshold"></b-form-input>
+        <b-form-input v-model="new_threshold" class="col-3" placeholder="请输入新设置的压力阈值" type="number"></b-form-input>
         <b-button class="mt-3" @click="submit_threshold">提交</b-button>
       </b-card>
     </b-container>
+    <b-modal ref="success" title="轨道交通智能预测系统-参数设置">
+      <p>操作成功!</p>
+    </b-modal>
+    <b-modal ref="fail" title="轨道交通智能预测系统-参数设置">
+      <p>操作失败!您的登陆信息已过期或后端服务器错误。</p>
+    </b-modal>
+    <b-modal ref="info" title="轨道交通智能预测系统-参数设置">
+      <p>选择或完整填写信息!</p>
+    </b-modal>
   </div>
 </template>
 
@@ -80,28 +89,33 @@ export default {
         this.site_pressure_threshold = resp.data['threshold'];
       }).catch(e => {
         console.log(e)
-        alert("后端服务器错误")
+        this.$refs['fail'].show()
       })
     },
     submit_threshold() {
-      this.axios({
-        method: "post",
-        url: "/api/parameter/setThreshold",
-        data: qs.stringify({
-          line: this.line_selected,
-          site: this.site_selected,
-          threshold: this.new_threshold
+      if (this.line_selected != null && this.site_selected != null && this.new_threshold != null) {
+        this.axios({
+          method: "post",
+          url: "/api/parameter/setThreshold",
+          data: qs.stringify({
+            line: this.line_selected,
+            site: this.site_selected,
+            threshold: this.new_threshold
+          })
+        }).then(resp => {
+          if (resp.data === "success") {
+            this.$refs['success'].show()
+          } else {
+            this.$refs['fail'].show()
+          }
+          this.refresh_site()
+        }).catch(e => {
+          console.log(e)
+          this.$refs['fail'].show()
         })
-      }).then(resp => {
-        if (resp.data !== "success")
-          alert("配置保存错误！")
-        else
-          alert("配置保存成功！")
-        this.refresh_site()
-      }).catch(e => {
-        console.log(e)
-        alert("后端服务器错误")
-      })
+      } else {
+        this.$refs['info'].show()
+      }
     }
   }
 }

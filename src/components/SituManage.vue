@@ -60,6 +60,15 @@
         </b-form-group>
         <b-button variant="primary" @click="createSituation">发布</b-button>
       </b-card>
+      <b-modal ref="success" title="轨道交通智能预测系统-特情管理">
+        <p>操作成功!</p>
+      </b-modal>
+      <b-modal ref="fail" title="轨道交通智能预测系统-特情管理">
+        <p>操作失败!您的登陆信息已过期或后端服务器错误。</p>
+      </b-modal>
+      <b-modal ref="info" title="轨道交通智能预测系统-特情管理">
+        <p>选择或完整填写信息!</p>
+      </b-modal>
     </div>
   </div>
 </template>
@@ -90,7 +99,7 @@ export default {
         this.items = resp.data["situation_all"]
       }).catch(e => {
         console.log(e)
-        alert("后端服务器错误")
+        this.$refs['info'].show()
       })
     },
     onRowSelected(items) {
@@ -112,17 +121,17 @@ export default {
           })
         }).then(resp => {
           if (resp.data === "success") {
-            alert("删除成功!")
+            this.$refs['success'].show()
           } else {
-            alert("删除失败!")
+            this.$refs['fail'].show()
           }
           this.fetchAll()
         }).catch(e => {
           console.log(e)
-          alert("后端服务器错误")
+          this.$refs['fail'].show()
         })
       } else {
-        alert("请选择要删除的特情")
+        this.$refs['info'].show()
       }
     },
     activateSituation() {
@@ -141,17 +150,17 @@ export default {
           })
         }).then(resp => {
           if (resp.data === "success") {
-            alert("激活成功!")
+            this.$refs['success'].show()
           } else {
-            alert("激活失败!")
+            this.$refs['fail'].show()
           }
           this.fetchAll()
         }).catch(e => {
           console.log(e)
-          alert("后端服务器错误")
+          this.$refs['fail'].show()
         })
       } else {
-        alert("请选择要激活的特情")
+        this.$refs['info'].show()
       }
     },
     deactivateSituation() {
@@ -170,17 +179,17 @@ export default {
           })
         }).then(resp => {
           if (resp.data === "success") {
-            alert("隐藏成功!")
+            this.$refs['success'].show()
           } else {
-            alert("隐藏失败!")
+            this.$refs['fail'].show()
           }
           this.fetchAll()
         }).catch(e => {
           console.log(e)
-          alert("后端服务器错误")
+          this.$refs['fail'].show()
         })
       } else {
-        alert("请选择要隐藏的特情")
+        this.$refs['info'].show()
       }
     },
     createSituation() {
@@ -193,17 +202,18 @@ export default {
             datetime: this.datetime
           })
         }).then(resp => {
-          if (resp.data !== "success")
-            alert("特情发布错误！")
-          else
-            alert("特情发布成功！")
+          if (resp.data === "success") {
+            this.$refs['success'].show()
+          } else {
+            this.$refs['fail'].show()
+          }
           this.fetchAll()
         }).catch(e => {
           console.log(e)
-          alert("后端服务器错误")
+          this.$refs['fail'].show()
         })
       } else {
-        alert("请填写完整信息")
+        this.$refs['info'].show()
       }
     }
   }
