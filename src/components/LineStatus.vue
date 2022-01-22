@@ -70,7 +70,7 @@ export default {
     })
     this.axios({
       method: "get",
-      url: "/api/line"
+      url: "/api/line/" + this.$route.params.id
     }).then(resp => {
       console.log(resp.data)
       this.items = resp.data['traffic']

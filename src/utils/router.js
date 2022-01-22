@@ -1,4 +1,5 @@
 import Default from "@/components/Default";
+import LineNav from "@/components/LineNav";
 import LineStatus from "@/components/LineStatus";
 import SiteNav from "@/components/SiteNav";
 import SiteStatus from "@/components/SiteStatus";
@@ -20,6 +21,14 @@ const routes = [
     },
     {
         path: '/line',
+        name: 'line_nav',
+        component: LineNav,
+        meta: {
+            title: '轨道交通智能预测系统-线路导航',
+        }
+    },
+    {
+        path: '/line/:id',
         name: 'line',
         component: LineStatus,
         meta: {
