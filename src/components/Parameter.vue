@@ -1,12 +1,16 @@
 <template>
   <div>
-    <b-sidebar class="text-center" no-header-close visible>
-      <router-link to="/admin/parameter">
-        <b-button pill variant="primary">参数设置</b-button>
-      </router-link>
-      <router-link to="/admin/situation">
-        <b-button pill variant="primary">特情管理</b-button>
-      </router-link>
+    <b-sidebar no-header-close title="管理界面选项" visible>
+      <div class="p-3 text-center">
+        <router-link to="/admin/parameter">
+          <b-button block pill size="lg" variant="primary">参数设置</b-button>
+        </router-link>
+      </div>
+      <div class="p-3 text-center">
+        <router-link to="/admin/situation">
+          <b-button block pill size="lg" variant="primary">特情管理</b-button>
+        </router-link>
+      </div>
     </b-sidebar>
     <b-container class="col-6 mt-3">
       <h1>系统参数设置</h1>
@@ -25,13 +29,13 @@
         <b-button class="mt-3" @click="submit_threshold">提交</b-button>
       </b-card>
     </b-container>
-    <b-modal header-bg-variant="success" ref="success" title="轨道交通智能预测系统-参数设置" hide-backdrop>
+    <b-modal ref="success" header-bg-variant="success" hide-backdrop title="轨道交通智能预测系统-参数设置">
       <p>操作成功!</p>
     </b-modal>
-    <b-modal header-bg-variant="danger" ref="fail" title="轨道交通智能预测系统-参数设置" hide-backdrop>
+    <b-modal ref="fail" header-bg-variant="danger" hide-backdrop title="轨道交通智能预测系统-参数设置">
       <p>操作失败!您的登陆信息已过期或后端服务器错误。</p>
     </b-modal>
-    <b-modal header-bg-variant="info" ref="info" title="轨道交通智能预测系统-参数设置" hide-backdrop>
+    <b-modal ref="info" header-bg-variant="info" hide-backdrop title="轨道交通智能预测系统-参数设置">
       <p>请选择或完整填写信息!</p>
     </b-modal>
   </div>
