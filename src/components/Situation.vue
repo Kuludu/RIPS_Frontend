@@ -4,6 +4,9 @@
       <h1>当前轨道交通系统特殊情况</h1>
       <b-table striped fixed :items="items" :fields="fields" />
     </b-container>
+    <b-modal header-bg-variant="danger" ref="fail" title="轨道交通智能预测系统" hide-backdrop>
+      <p>后端服务器错误。</p>
+    </b-modal>
   </div>
 </template>
 
@@ -24,7 +27,7 @@ export default {
       this.items = resp.data["0"]
     }).catch(e => {
       console.log(e)
-      alert("后端服务器错误")
+      this.$refs['fail'].show()
     })
   }
 }

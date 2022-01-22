@@ -60,14 +60,14 @@
         </b-form-group>
         <b-button variant="primary" @click="createSituation">发布</b-button>
       </b-card>
-      <b-modal ref="success" title="轨道交通智能预测系统-特情管理">
+      <b-modal header-bg-variant="success" ref="success" title="轨道交通智能预测系统-特情管理" hide-backdrop>
         <p>操作成功!</p>
       </b-modal>
-      <b-modal ref="fail" title="轨道交通智能预测系统-特情管理">
+      <b-modal header-bg-variant="danger" ref="fail" title="轨道交通智能预测系统-特情管理" hide-backdrop>
         <p>操作失败!您的登陆信息已过期或后端服务器错误。</p>
       </b-modal>
-      <b-modal ref="info" title="轨道交通智能预测系统-特情管理">
-        <p>选择或完整填写信息!</p>
+      <b-modal header-bg-variant="info" ref="info" title="轨道交通智能预测系统-特情管理" hide-backdrop>
+        <p>请选择或完整填写信息!</p>
       </b-modal>
     </div>
   </div>

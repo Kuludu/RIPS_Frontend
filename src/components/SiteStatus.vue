@@ -10,6 +10,9 @@
         </b-table>
       </b-col>
     </b-row>
+    <b-modal header-bg-variant="danger" ref="fail" title="轨道交通智能预测系统" hide-backdrop>
+      <p>后端服务器错误。</p>
+    </b-modal>
   </div>
 </template>
 
@@ -118,7 +121,7 @@ export default {
       })
     }).catch(e => {
       console.log(e)
-      alert("后端服务器错误")
+      this.$refs['fail'].show()
     })
   }
 }

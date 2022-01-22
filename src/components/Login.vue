@@ -1,38 +1,43 @@
 <template>
-  <b-container class="col-3" style="margin-top: 20px">
-    <h1>管理员登陆</h1>
-    <b-form @submit="login">
-      <b-form-group
-          id="username-group"
-          label="用户名:"
-          label-cols="4"
-      >
-        <b-form-input
-            id="username-input"
-            v-model="form.username"
-            placeholder="用户名"
-            required
-            type="text"
-        ></b-form-input>
-      </b-form-group>
+  <div>
+    <b-container class="col-3" style="margin-top: 20px">
+      <h1>管理员登陆</h1>
+      <b-form @submit="login">
+        <b-form-group
+            id="username-group"
+            label="用户名:"
+            label-cols="4"
+        >
+          <b-form-input
+              id="username-input"
+              v-model="form.username"
+              placeholder="用户名"
+              required
+              type="text"
+          ></b-form-input>
+        </b-form-group>
 
-      <b-form-group
-          id="password-group"
-          label="密码："
-          label-cols="4"
-      >
-        <b-form-input
-            id="password-input"
-            v-model="form.password"
-            placeholder="密码"
-            required
-            type="password"
-        ></b-form-input>
-      </b-form-group>
+        <b-form-group
+            id="password-group"
+            label="密码："
+            label-cols="4"
+        >
+          <b-form-input
+              id="password-input"
+              v-model="form.password"
+              placeholder="密码"
+              required
+              type="password"
+          ></b-form-input>
+        </b-form-group>
 
-      <b-button type="submit" variant="primary" style="margin-top: 10px">提交</b-button>
-    </b-form>
-  </b-container>
+        <b-button style="margin-top: 10px" type="submit" variant="primary">提交</b-button>
+      </b-form>
+    </b-container>
+    <b-modal header-bg-variant="danger" ref="fail" title="轨道交通智能预测系统-管理登陆" hide-backdrop>
+      <p>操作失败!您的用户名/密码或后端服务器错误。</p>
+    </b-modal>
+  </div>
 </template>
 
 <script>
@@ -59,13 +64,14 @@ export default {
           password: this.form.password
         })
       }).then(resp => {
-        if (resp.data !== "success")
-          alert("用户名或密码错误！")
-        else
-            this.$router.push({path: '/admin/parameter'})
+        if (resp.data === "success") {
+          this.$router.push({path: '/admin/parameter'})
+        } else {
+          this.$refs['fail'].show()
+        }
       }).catch(e => {
         console.log(e)
-        alert("后端服务器错误")
+        this.$refs['fail'].show()
       })
     }
   }
