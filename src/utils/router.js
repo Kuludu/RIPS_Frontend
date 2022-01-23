@@ -11,6 +11,7 @@ import Parameter from "@/components/Parameter";
 import SituManage from "@/components/SituManage";
 import BigData from "@/components/BigData";
 import UserManage from "@/components/UserManage";
+import Complex from "@/components/Complex";
 
 
 const routes = [
@@ -116,6 +117,14 @@ const routes = [
         component: UserManage,
         meta: {
             title: '轨道交通智能预测系统-用户管理',
+        }
+    },
+    {
+        path: '/complex/:id',
+        name: 'complex',
+        component: Complex,
+        meta: {
+            title: '轨道交通智能预测系统-复杂查询'
         }
     }
 ]
