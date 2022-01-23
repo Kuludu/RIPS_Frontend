@@ -69,7 +69,7 @@ const routes = [
         }
     },
     {
-        path: '/history/:line',
+        path: '/history/:year/:line',
         name: 'history',
         component: History,
         meta: {

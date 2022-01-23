@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-container class="text-center">
-      <h1>上年{{ this.$route.params.line }}号线运营基础数据</h1>
+      <h1>{{ this.$route.params.year }}年{{ this.$route.params.line }}号线运营基础数据</h1>
     </b-container>
     <b-row align-h="center" class="mx-0">
       <b-col class="mb-5" cols="8">
@@ -131,7 +131,7 @@ export default {
     let c6 = this.echarts.init(document.getElementById("c6"));
     this.axios({
       method: "get",
-      url: "/api/history/" + this.$route.params.line,
+      url: "/api/history/" + this.$route.params.year + '/' + this.$route.params.line,
       responseType: "json",
     }).then(resp => {
       c1.setOption(resp.data.c1);
