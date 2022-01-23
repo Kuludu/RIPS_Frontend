@@ -1,11 +1,31 @@
 <template>
   <div>
     <b-row class="mx-0">
-      <b-col id="line" class="col-8" style="height: 900px"/>
+      <b-col class="col-8">
+        <b-overlay :show="overlay_table" rounded="sm">
+          <div id="line" class="chart_height"></div>
+          <template #overlay>
+            <div class="text-center">
+              <b-icon animation="spin" font-scale="5" icon="arrow-clockwise"/>
+              <p>数据加载中...</p>
+            </div>
+          </template>
+        </b-overlay>
+      </b-col>
       <b-col cols="4">
-        <b-table :fields="fields" :items="items" fixed no-border-collapse sticky-header="800px" striped>
-          <template #table-caption>5min出入站数据</template>
-        </b-table>
+        <b-overlay :show="overlay_table" rounded="sm">
+          <div class="chart_height">
+            <b-table :fields="fields" :items="items" fixed no-border-collapse sticky-header="800px" striped>
+              <template #table-caption>5min出入站数据</template>
+            </b-table>
+          </div>
+          <template #overlay>
+            <div class="text-center">
+              <b-icon animation="spin" font-scale="5" icon="arrow-clockwise"/>
+              <p>数据加载中...</p>
+            </div>
+          </template>
+        </b-overlay>
       </b-col>
     </b-row>
     <b-modal ref="fail" header-bg-variant="danger" title="轨道交通智能预测系统">
@@ -20,7 +40,9 @@ export default {
   data: function () {
     return {
       fields: ['站点', '出/入站', '时间'],
-      items: []
+      items: [],
+      overlay_chart: true,
+      overlay_table: true
     }
   },
   mounted: function () {
@@ -43,40 +65,13 @@ export default {
         "  <circle name=\"站点7\" stroke=\"null\" r=\"30\" cy=\"291.14973\" cx=\"464.52746\" id=\"svg_10\"/>\n" +
         "  <circle name=\"站点8\" stroke=\"null\" r=\"30\" cy=\"92.23925\" cx=\"464.52746\" id=\"svg_11\"/>\n" +
         " </g>\n" +
-        "</svg>"
+        "</svg>";
 
     this.echarts.registerMap('line_5', {svg: parser.parseFromString(line_5, 'text/xml')});
-    line.setOption({
-      title: {
-        text: '{a|}',
-        subtext: '正在加载中！',
-        x: 'center',
-        y: 'center',
-        itemGap: -20,
-        textStyle: {
-          rich: {
-            a: {
-              color: '#000',
-              fontSize: '16',
-              height: 100,
-              width: 180,
-              backgroundColor: {
-                image: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNDEiIHZpZXdCb3g9IjAgMCA2NCA0MSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4NCiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCAxKSIgZmlsbD0ibm9uZSIgZmlsbFJ1bGU9ImV2ZW5vZGQiPg0KICAgIDxlbGxpcHNlIGZpbGw9IiNkZGQiIGN4PSIzMiIgY3k9IjMzIiByeD0iMzIiIHJ5PSI3IiAvPg0KICAgIDxnIGZpbGxSdWxlPSJub256ZXJvIiBzdHJva2U9IiM5OTkiPg0KICAgICAgPHBhdGgNCiAgICAgICAgZD0iTTU1IDEyLjc2TDQ0Ljg1NCAxLjI1OEM0NC4zNjcuNDc0IDQzLjY1NiAwIDQyLjkwNyAwSDIxLjA5M2MtLjc0OSAwLTEuNDYuNDc0LTEuOTQ3IDEuMjU3TDkgMTIuNzYxVjIyaDQ2di05LjI0eiIgLz4NCiAgICAgIDxwYXRoDQogICAgICAgIGQ9Ik00MS42MTMgMTUuOTMxYzAtMS42MDUuOTk0LTIuOTMgMi4yMjctMi45MzFINTV2MTguMTM3QzU1IDMzLjI2IDUzLjY4IDM1IDUyLjA1IDM1aC00MC4xQzEwLjMyIDM1IDkgMzMuMjU5IDkgMzEuMTM3VjEzaDExLjE2YzEuMjMzIDAgMi4yMjcgMS4zMjMgMi4yMjcgMi45Mjh2LjAyMmMwIDEuNjA1IDEuMDA1IDIuOTAxIDIuMjM3IDIuOTAxaDE0Ljc1MmMxLjIzMiAwIDIuMjM3LTEuMzA4IDIuMjM3LTIuOTEzdi0uMDA3eiINCiAgICAgICAgZmlsbD0iI2UxZTFlMSIgLz4NCiAgICA8L2c+DQogIDwvZz4NCjwvc3ZnPg==',
-              }
-            },
-          }
-        },
-        subtextStyle: {
-          fontSize: 24,
-        }
-      }
-    })
     this.axios({
       method: "get",
       url: "/api/line/" + this.$route.params.id
     }).then(resp => {
-      console.log(resp.data)
-      this.items = resp.data['traffic']
       line.setOption({
         grid: {
           left: '40%',
@@ -165,15 +160,28 @@ export default {
             data: resp.data['lineTrend']
           }
         ]
-      })
+      });
+      this.overlay_chart = false;
     }).catch(e => {
-      console.log(e)
-      this.$refs['fail'].show()
-    })
+      console.log(e);
+      this.$refs['fail'].show();
+    });
+    this.axios({
+      method: "get",
+      url: "/api/traffic/" + this.$route.params.id + "/0"
+    }).then(resp => {
+      this.items = resp.data['traffic'];
+      this.overlay_table = false;
+    }).catch(e => {
+      console.log(e);
+      this.$refs['fail'].show();
+    });
   }
 }
 </script>
 
 <style scoped>
-
+.chart_height {
+  height: 900px;
+}
 </style>

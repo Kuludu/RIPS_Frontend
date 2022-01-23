@@ -2,12 +2,30 @@
   <div>
     <b-row class="mx-0">
       <b-col cols="8">
-        <div id="site" style="height: 900px"></div>
+        <b-overlay :show="overlay_table" rounded="sm">
+          <div id="site" class="chart_height"></div>
+          <template #overlay>
+            <div class="text-center">
+              <b-icon animation="spin" font-scale="5" icon="arrow-clockwise"/>
+              <p>数据加载中...</p>
+            </div>
+          </template>
+        </b-overlay>
       </b-col>
       <b-col>
-        <b-table :fields="fields" :items="items" fixed no-border-collapse sticky-header="800px" striped>
-          <template #table-caption>5min出入站数据</template>
-        </b-table>
+        <b-overlay :show="overlay_table" rounded="sm">
+          <div class="chart_height">
+            <b-table :fields="fields" :items="items" fixed no-border-collapse sticky-header="800px" striped>
+              <template #table-caption>5min出入站数据</template>
+            </b-table>
+          </div>
+          <template #overlay>
+            <div class="text-center">
+              <b-icon animation="spin" font-scale="5" icon="arrow-clockwise"/>
+              <p>数据加载中...</p>
+            </div>
+          </template>
+        </b-overlay>
       </b-col>
     </b-row>
     <b-modal ref="fail" header-bg-variant="danger" title="轨道交通智能预测系统">
@@ -22,45 +40,20 @@ export default {
   data: function () {
     return {
       fields: ['出/入站', '时间'],
-      items: []
+      items: [],
+      overlay_chart: true,
+      overlay_table: true
     }
   },
   mounted() {
     let site = this.echarts.init(document.getElementById('site'));
-    site.setOption({
-      title: {
-        text: '{a|}',
-        subtext: '正在加载中！',
-        x: 'center',
-        y: 'center',
-        itemGap: -20,
-        textStyle: {
-          rich: {
-            a: {
-              color: '#000',
-              fontSize: '16',
-              height: 100,
-              width: 180,
-              backgroundColor: {
-                image: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNDEiIHZpZXdCb3g9IjAgMCA2NCA0MSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4NCiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCAxKSIgZmlsbD0ibm9uZSIgZmlsbFJ1bGU9ImV2ZW5vZGQiPg0KICAgIDxlbGxpcHNlIGZpbGw9IiNkZGQiIGN4PSIzMiIgY3k9IjMzIiByeD0iMzIiIHJ5PSI3IiAvPg0KICAgIDxnIGZpbGxSdWxlPSJub256ZXJvIiBzdHJva2U9IiM5OTkiPg0KICAgICAgPHBhdGgNCiAgICAgICAgZD0iTTU1IDEyLjc2TDQ0Ljg1NCAxLjI1OEM0NC4zNjcuNDc0IDQzLjY1NiAwIDQyLjkwNyAwSDIxLjA5M2MtLjc0OSAwLTEuNDYuNDc0LTEuOTQ3IDEuMjU3TDkgMTIuNzYxVjIyaDQ2di05LjI0eiIgLz4NCiAgICAgIDxwYXRoDQogICAgICAgIGQ9Ik00MS42MTMgMTUuOTMxYzAtMS42MDUuOTk0LTIuOTMgMi4yMjctMi45MzFINTV2MTguMTM3QzU1IDMzLjI2IDUzLjY4IDM1IDUyLjA1IDM1aC00MC4xQzEwLjMyIDM1IDkgMzMuMjU5IDkgMzEuMTM3VjEzaDExLjE2YzEuMjMzIDAgMi4yMjcgMS4zMjMgMi4yMjcgMi45Mjh2LjAyMmMwIDEuNjA1IDEuMDA1IDIuOTAxIDIuMjM3IDIuOTAxaDE0Ljc1MmMxLjIzMiAwIDIuMjM3LTEuMzA4IDIuMjM3LTIuOTEzdi0uMDA3eiINCiAgICAgICAgZmlsbD0iI2UxZTFlMSIgLz4NCiAgICA8L2c+DQogIDwvZz4NCjwvc3ZnPg==',
-              }
-            },
-          }
-        },
-        subtextStyle: {
-          fontSize: 24,
-        }
-      }
-    })
     this.axios({
       method: "get",
       url: "/api/site/" + this.$route.params.line + "/" + this.$route.params.site,
     }).then(resp => {
-      this.items = resp.data["traffic"]
       site.setOption({
         title: {
           text: '站点运行状态',
-          subtext: null,
           y: 'up',
           left: 'center',
           textStyle: {
@@ -118,15 +111,28 @@ export default {
             data: resp.data["trend"]
           }
         ]
-      })
+      });
+      this.overlay_chart = false;
     }).catch(e => {
-      console.log(e)
-      this.$refs['fail'].show()
+      console.log(e);
+      this.$refs['fail'].show();
     })
+    this.axios({
+      method: "get",
+      url: "/api/traffic/" + this.$route.params.line + "/" + this.$route.params.site,
+    }).then(resp => {
+      this.items = resp.data["traffic"];
+      this.overlay_table = false;
+    }).catch(e => {
+      console.log(e);
+      this.$refs['fail'].show();
+    });
   }
 }
 </script>
 
 <style scoped>
-
+.chart_height {
+  height: 900px;
+}
 </style>
