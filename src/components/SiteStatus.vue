@@ -53,7 +53,7 @@ export default {
     }).then(resp => {
       site.setOption({
         title: {
-          text: '站点运行状态',
+          text: '线路' + this.$route.params.line + '站点' + this.$route.params.site + '运行状态',
           y: 'up',
           left: 'center',
           textStyle: {

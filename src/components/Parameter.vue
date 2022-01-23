@@ -22,9 +22,8 @@
         </router-link>
       </div>
     </b-sidebar>
-    <b-container class="col-6 mt-3">
-      <h1>系统参数设置</h1>
-      <small>此参数应由专业人员配置，站点工作人员请勿随意更改！</small>
+    <b-container class="col-6">
+      <h1 class="mt-3 mb-3">系统参数设置</h1>
       <b-card title="站点压力阈值">
         <b-row>
           <b-col>
@@ -92,19 +91,23 @@ export default {
   },
   methods: {
     refresh_site() {
-      this.axios({
-        method: "post",
-        url: "/api/parameter/getThreshold",
-        data: qs.stringify({
-          line: this.line_selected,
-          site: this.site_selected,
+      if (this.line_selected != null && this.site_selected != null) {
+        this.axios({
+          method: "post",
+          url: "/api/parameter/getThreshold",
+          data: qs.stringify({
+            line: this.line_selected,
+            site: this.site_selected,
+          })
+        }).then(resp => {
+          this.site_pressure_threshold = resp.data['threshold'];
+        }).catch(e => {
+          console.log(e);
+          this.$refs['fail'].show();
         })
-      }).then(resp => {
-        this.site_pressure_threshold = resp.data['threshold'];
-      }).catch(e => {
-        console.log(e)
-        this.$refs['fail'].show()
-      })
+      } else {
+        this.site_pressure_threshold = 0;
+      }
     },
     submit_threshold() {
       if (this.line_selected != null && this.site_selected != null && this.new_threshold != null) {
@@ -118,17 +121,17 @@ export default {
           })
         }).then(resp => {
           if (resp.data === "success") {
-            this.$refs['success'].show()
+            this.$refs['success'].show();
           } else {
-            this.$refs['fail'].show()
+            this.$refs['fail'].show();
           }
           this.refresh_site()
         }).catch(e => {
-          console.log(e)
-          this.$refs['fail'].show()
+          console.log(e);
+          this.$refs['fail'].show();
         })
       } else {
-        this.$refs['info'].show()
+        this.$refs['info'].show();
       }
     }
   }

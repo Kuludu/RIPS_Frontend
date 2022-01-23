@@ -18,7 +18,7 @@
         </b-card>
         <b-card border-variant="info" header="数据备注" header-bg-variant="info" header-text-variant="white">
           <p>
-            可供非商业分析使用。
+            {{ this.desc_1 }}
           </p>
         </b-card>
       </b-col>
@@ -36,7 +36,7 @@
         </b-card>
         <b-card border-variant="info" header="数据备注" header-bg-variant="info" header-text-variant="white">
           <p>
-            可供非商业分析使用。
+            {{ this.desc_2 }}
           </p>
         </b-card>
       </b-col>
@@ -54,7 +54,7 @@
         </b-card>
         <b-card border-variant="info" header="数据备注" header-bg-variant="info" header-text-variant="white">
           <p>
-            可供非商业分析使用。
+            {{ this.desc_3 }}
           </p>
         </b-card>
       </b-col>
@@ -72,7 +72,7 @@
         </b-card>
         <b-card border-variant="info" header="数据备注" header-bg-variant="info" header-text-variant="white">
           <p>
-            可供非商业分析使用。
+            {{ this.desc_4 }}
           </p>
         </b-card>
       </b-col>
@@ -90,7 +90,7 @@
         </b-card>
         <b-card border-variant="info" header="数据备注" header-bg-variant="info" header-text-variant="white">
           <p>
-            可供非商业分析使用。
+            {{ this.desc_5 }}
           </p>
         </b-card>
       </b-col>
@@ -108,7 +108,7 @@
         </b-card>
         <b-card border-variant="info" header="数据备注" header-bg-variant="info" header-text-variant="white">
           <p>
-            可供非商业分析使用。
+            {{ this.desc_6 }}
           </p>
         </b-card>
       </b-col>
@@ -122,6 +122,16 @@
 <script>
 export default {
   name: "History",
+  data: function () {
+    return {
+      desc_1: "",
+      desc_2: "",
+      desc_3: "",
+      desc_4: "",
+      desc_5: "",
+      desc_6: "",
+    }
+  },
   mounted() {
     let c1 = this.echarts.init(document.getElementById("c1"));
     let c2 = this.echarts.init(document.getElementById("c2"));
@@ -134,12 +144,19 @@ export default {
       url: "/api/history/" + this.$route.params.year + '/' + this.$route.params.line,
       responseType: "json",
     }).then(resp => {
-      c1.setOption(resp.data.c1);
-      c2.setOption(resp.data.c2);
-      c3.setOption(resp.data.c3);
-      c4.setOption(resp.data.c4);
-      c5.setOption(resp.data.c5);
-      c6.setOption(resp.data.c6);
+      c1.setOption(resp.data['c1']);
+      c2.setOption(resp.data['c2']);
+      c3.setOption(resp.data['c3']);
+      c4.setOption(resp.data['c4']);
+      c5.setOption(resp.data['c5']);
+      c6.setOption(resp.data['c6']);
+
+      this.desc_1 = resp.data['desc_1']
+      this.desc_2 = resp.data['desc_2']
+      this.desc_3 = resp.data['desc_3']
+      this.desc_4 = resp.data['desc_4']
+      this.desc_5 = resp.data['desc_5']
+      this.desc_6 = resp.data['desc_6']
     }).catch(e => {
       console.log(e)
       this.$refs['fail'].show()

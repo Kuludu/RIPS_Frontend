@@ -22,8 +22,8 @@
         </router-link>
       </div>
     </b-sidebar>
-    <div class="container col-md-6 mt-4">
-      <h1>特情管理</h1>
+    <b-container class="col-6">
+      <h1 class="mt-3 mb-3">特情管理</h1>
       <b-card title="特情面板">
         <b-table
             ref="selectableTable"
@@ -54,7 +54,6 @@
           </b-button-group>
         </p>
       </b-card>
-
       <b-card class="mt-3" title="发布特情">
         <b-form-group
             class="col-4"
@@ -83,7 +82,7 @@
       <b-modal ref="info" header-bg-variant="info" title="轨道交通智能预测系统-特情管理">
         <p>请选择或完整填写信息!</p>
       </b-modal>
-    </div>
+    </b-container>
   </div>
 </template>
 
@@ -110,20 +109,20 @@ export default {
         method: "get",
         url: "/api/situation/fetchAll"
       }).then(resp => {
-        this.items = resp.data["situation_all"]
+        this.items = resp.data["situation_all"];
       }).catch(e => {
-        console.log(e)
-        this.$refs['fail'].show()
+        console.log(e);
+        this.$refs['fail'].show();
       })
     },
     onRowSelected(items) {
-      this.selected = items
+      this.selected = items;
     },
     deleteSituation() {
       if (this.selected.length > 0) {
-        let onDelete = []
+        let onDelete = [];
         this.selected.forEach(item => {
-          onDelete.push(item["ID"])
+          onDelete.push(item["ID"]);
         })
         this.axios({
           method: "post",
@@ -135,24 +134,24 @@ export default {
           })
         }).then(resp => {
           if (resp.data === "success") {
-            this.$refs['success'].show()
+            this.$refs['success'].show();
           } else {
-            this.$refs['fail'].show()
+            this.$refs['fail'].show();
           }
-          this.fetchAll()
+          this.fetchAll();
         }).catch(e => {
-          console.log(e)
-          this.$refs['fail'].show()
+          console.log(e);
+          this.$refs['fail'].show();
         })
       } else {
-        this.$refs['info'].show()
+        this.$refs['info'].show();
       }
     },
     activateSituation() {
       if (this.selected.length > 0) {
-        let onActivate = []
+        let onActivate = [];
         this.selected.forEach(item => {
-          onActivate.push(item["ID"])
+          onActivate.push(item["ID"]);
         })
         this.axios({
           method: "post",
@@ -164,24 +163,24 @@ export default {
           })
         }).then(resp => {
           if (resp.data === "success") {
-            this.$refs['success'].show()
+            this.$refs['success'].show();
           } else {
-            this.$refs['fail'].show()
+            this.$refs['fail'].show();
           }
-          this.fetchAll()
+          this.fetchAll();
         }).catch(e => {
-          console.log(e)
-          this.$refs['fail'].show()
+          console.log(e);
+          this.$refs['fail'].show();
         })
       } else {
-        this.$refs['info'].show()
+        this.$refs['info'].show();
       }
     },
     deactivateSituation() {
       if (this.selected.length > 0) {
-        let onDeactivate = []
+        let onDeactivate = [];
         this.selected.forEach(item => {
-          onDeactivate.push(item["ID"])
+          onDeactivate.push(item["ID"]);
         })
         this.axios({
           method: "post",
@@ -193,17 +192,17 @@ export default {
           })
         }).then(resp => {
           if (resp.data === "success") {
-            this.$refs['success'].show()
+            this.$refs['success'].show();
           } else {
-            this.$refs['fail'].show()
+            this.$refs['fail'].show();
           }
-          this.fetchAll()
+          this.fetchAll();
         }).catch(e => {
-          console.log(e)
-          this.$refs['fail'].show()
+          console.log(e);
+          this.$refs['fail'].show();
         })
       } else {
-        this.$refs['info'].show()
+        this.$refs['info'].show();
       }
     },
     createSituation() {
@@ -217,17 +216,17 @@ export default {
           })
         }).then(resp => {
           if (resp.data === "success") {
-            this.$refs['success'].show()
+            this.$refs['success'].show();
           } else {
-            this.$refs['fail'].show()
+            this.$refs['fail'].show();
           }
-          this.fetchAll()
+          this.fetchAll();
         }).catch(e => {
-          console.log(e)
-          this.$refs['fail'].show()
+          console.log(e);
+          this.$refs['fail'].show();
         })
       } else {
-        this.$refs['info'].show()
+        this.$refs['info'].show();
       }
     }
   }
