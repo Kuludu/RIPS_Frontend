@@ -4,6 +4,7 @@ import LineStatus from "@/components/LineStatus";
 import SiteNav from "@/components/SiteNav";
 import SiteStatus from "@/components/SiteStatus";
 import Situation from "@/components/Situation";
+import HistoryNav from "@/components/HistoryNav";
 import History from "@/components/History";
 import Login from "@/components/Login";
 import Parameter from "@/components/Parameter";
@@ -61,6 +62,14 @@ const routes = [
     },
     {
         path: '/history',
+        name: 'history_nav',
+        component: HistoryNav,
+        meta: {
+            title: '轨道交通智能预测系统-历史导航',
+        }
+    },
+    {
+        path: '/history/:line',
         name: 'history',
         component: History,
         meta: {
