@@ -34,7 +34,7 @@
         <b-button style="margin-top: 10px" type="submit" variant="primary">提交</b-button>
       </b-form>
     </b-container>
-    <b-modal header-bg-variant="danger" ref="fail" title="轨道交通智能预测系统-管理登陆" hide-backdrop>
+    <b-modal ref="fail" header-bg-variant="danger" title="轨道交通智能预测系统-管理登陆">
       <p>操作失败!您的用户名/密码或后端服务器错误。</p>
     </b-modal>
   </div>

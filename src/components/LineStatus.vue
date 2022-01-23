@@ -8,7 +8,7 @@
         </b-table>
       </b-col>
     </b-row>
-    <b-modal ref="fail" header-bg-variant="danger" hide-backdrop title="轨道交通智能预测系统">
+    <b-modal ref="fail" header-bg-variant="danger" title="轨道交通智能预测系统">
       <p>后端服务器错误。</p>
     </b-modal>
   </div>

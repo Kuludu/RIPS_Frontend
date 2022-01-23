@@ -29,13 +29,13 @@
         <b-button class="mt-3" @click="submit_threshold">提交</b-button>
       </b-card>
     </b-container>
-    <b-modal ref="success" header-bg-variant="success" hide-backdrop title="轨道交通智能预测系统-参数设置">
+    <b-modal ref="success" header-bg-variant="success" title="轨道交通智能预测系统-参数设置">
       <p>操作成功!</p>
     </b-modal>
-    <b-modal ref="fail" header-bg-variant="danger" hide-backdrop title="轨道交通智能预测系统-参数设置">
+    <b-modal ref="fail" header-bg-variant="danger" title="轨道交通智能预测系统-参数设置">
       <p>操作失败!您的登陆信息已过期或后端服务器错误。</p>
     </b-modal>
-    <b-modal ref="info" header-bg-variant="info" hide-backdrop title="轨道交通智能预测系统-参数设置">
+    <b-modal ref="info" header-bg-variant="info" title="轨道交通智能预测系统-参数设置">
       <p>请选择或完整填写信息!</p>
     </b-modal>
   </div>
