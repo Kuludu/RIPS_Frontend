@@ -7,28 +7,28 @@ import axios from "axios";
 import echarts from '@/utils/echarts';
 import routes from '@/utils/router';
 
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap-vue/dist/bootstrap-vue.css';
 import 'vue-ctk-date-time-picker/dist/vue-ctk-date-time-picker.css';
 
-axios.defaults.withCredentials = true
+axios.defaults.withCredentials = true;
 
-Vue.use(BootstrapVue)
-Vue.use(IconsPlugin)
-Vue.use(VueRouter)
+Vue.use(BootstrapVue);
+Vue.use(IconsPlugin);
+Vue.use(VueRouter);
 Vue.component('VueCtkDateTimePicker', VueCtkDateTimePicker);
-Vue.config.productionTip = false
-Vue.prototype.axios = axios
-Vue.prototype.echarts = echarts
+Vue.config.productionTip = false;
+Vue.prototype.axios = axios;
+Vue.prototype.echarts = echarts;
 
 const router = new VueRouter({
   routes: routes
 })
 router.beforeEach((to, from, next) => {
   if (to.meta.title) {
-    document.title = to.meta.title
+    document.title = to.meta.title;
   }
-  next()
+  next();
 })
 
 new Vue({
