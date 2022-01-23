@@ -1,7 +1,7 @@
 <template>
   <div>
-    <b-container class="col-3" style="margin-top: 20px">
-      <h1>管理员登陆</h1>
+    <b-container class="col-3">
+      <h1 class="mt-3 mb-3">管理员登陆</h1>
       <b-form @submit="login">
         <b-form-group
             id="username-group"

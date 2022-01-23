@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-container class="text-center">
-      <h1>{{ this.$route.params.year }}年{{ this.$route.params.line }}号线运营基础数据</h1>
+      <h1 class="mt-3 mb-3">{{ this.$route.params.year }}年{{ this.$route.params.line }}号线运营基础数据</h1>
     </b-container>
     <b-row align-h="center" class="mx-0">
       <b-col class="mb-5" cols="8">
