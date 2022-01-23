@@ -111,7 +111,7 @@ export default {
         },
         xAxis: {
           type: 'category',
-          data: ['前45～30分钟流量', '前15～30分钟流量', '前15分钟流量', '预计15分内流量']
+          data: ['前60～45分钟流量', '前45～30分钟流量', '前15～30分钟流量', '前15分钟流量', '预计15分内流量']
         },
         yAxis: {
           type: 'value'
@@ -135,6 +135,11 @@ export default {
             center: ['50%', '25%'],
             radius: '25%',
             max: 1,
+            detail: {
+              formatter: function (value) {
+                return value.toFixed(2)
+              }
+            },
             data: [
               {
                 value: resp.data['realPressure'],
@@ -147,6 +152,11 @@ export default {
             center: ['80%', '25%'],
             radius: '25%',
             max: 1,
+            detail: {
+              formatter: function (value) {
+                return value.toFixed(2)
+              }
+            },
             data: [
               {
                 value: resp.data['prePressure'],

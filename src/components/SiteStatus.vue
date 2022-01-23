@@ -49,7 +49,7 @@ export default {
     let site = this.echarts.init(document.getElementById('site'));
     this.axios({
       method: "get",
-      url: "/api/site/" + this.$route.params.line + "/" + this.$route.params.site,
+      url: "/api/site/" + this.$route.params.line + "/" + this.$route.params.site
     }).then(resp => {
       site.setOption({
         title: {
@@ -59,7 +59,7 @@ export default {
           textStyle: {
             color: 'black',
             fontSize: '40'
-          },
+          }
         },
         tooltip: {
           trigger: 'item',
@@ -73,7 +73,7 @@ export default {
         },
         xAxis: {
           type: 'category',
-          data: ['前45～30分钟流量', '前15～30分钟流量', '前15分钟流量', '预计15分内流量']
+          data: ['前60～45分钟流量', '前45～30分钟流量', '前15～30分钟流量', '前15分钟流量', '预计15分内流量']
         },
         yAxis: {
           type: 'value'
@@ -85,6 +85,11 @@ export default {
             center: ['20%', '25%'],
             radius: '35%',
             max: 1,
+            detail: {
+              formatter: function (value) {
+                return value.toFixed(2)
+              }
+            },
             data: [
               {
                 value: resp.data["realPressure"],
@@ -98,6 +103,11 @@ export default {
             center: ['20%', '65%'],
             radius: '35%',
             max: 1,
+            detail: {
+              formatter: function (value) {
+                return value.toFixed(2)
+              }
+            },
             data: [
               {
                 value: resp.data["prePressure"],
