@@ -10,6 +10,7 @@ import Login from "@/components/Login";
 import Parameter from "@/components/Parameter";
 import SituManage from "@/components/SituManage";
 import BigData from "@/components/BigData";
+import UserManage from "@/components/UserManage";
 
 
 const routes = [
@@ -103,10 +104,18 @@ const routes = [
     },
     {
         path: '/admin/bigdata',
-        name: 'bigdata',
+        name: 'bigData',
         component: BigData,
         meta: {
             title: '轨道交通智能预测系统-大数据管理',
+        }
+    },
+    {
+        path: '/admin/user',
+        name: 'userManage',
+        component: UserManage,
+        meta: {
+            title: '轨道交通智能预测系统-用户管理',
         }
     }
 ]

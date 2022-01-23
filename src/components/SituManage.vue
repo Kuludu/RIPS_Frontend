@@ -16,6 +16,11 @@
           <b-button block pill size="lg" variant="primary">大数据管理</b-button>
         </router-link>
       </div>
+      <div class="p-3 text-center">
+        <router-link to="/admin/user">
+          <b-button block pill size="lg" variant="primary">用户管理</b-button>
+        </router-link>
+      </div>
     </b-sidebar>
     <div class="container col-md-6 mt-4">
       <h1>特情管理</h1>

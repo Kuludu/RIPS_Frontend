@@ -22,13 +22,12 @@
         </router-link>
       </div>
     </b-sidebar>
-
   </div>
 </template>
 
 <script>
 export default {
-  name: "BigData"
+  name: "UserManage"
 }
 </script>
 
