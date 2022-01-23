@@ -11,6 +11,11 @@
           <b-button block pill size="lg" variant="primary">特情管理</b-button>
         </router-link>
       </div>
+      <div class="p-3 text-center">
+        <router-link to="/admin/bigdata">
+          <b-button block pill size="lg" variant="primary">大数据管理</b-button>
+        </router-link>
+      </div>
     </b-sidebar>
     <b-container class="col-6 mt-3">
       <h1>系统参数设置</h1>
