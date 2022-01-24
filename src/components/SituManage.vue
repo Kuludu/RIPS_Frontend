@@ -116,7 +116,7 @@ export default {
       })
     },
     onRowSelected(items) {
-      this.selected = items['ID'];
+      this.selected = items;
     },
     deleteSituation() {
       if (this.selected.length > 0) {
