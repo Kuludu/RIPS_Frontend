@@ -29,7 +29,7 @@
         <b-alert class="mt-3" dismissible show variant="info">请注意，复杂查询直接在大数据系统上执行，对系统压力较大！</b-alert>
       </b-card>
     </b-container>
-    <b-modal ref="info" header-bg-variant="info" title="轨道交通智能预测系统-参数设置">
+    <b-modal ref="info" header-bg-variant="info" title="轨道交通智能预测系统-历史数据">
       <p>请选择或完整填写信息!</p>
     </b-modal>
   </div>
