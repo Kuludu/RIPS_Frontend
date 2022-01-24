@@ -119,6 +119,9 @@ export default {
         this.axios({
           method: "post",
           url: "/api/user/delete",
+          data: qs.stringify({
+            username: this.username
+          })
         }).then(resp => {
           if (resp.data === "success") {
             this.$refs['success'].show();
