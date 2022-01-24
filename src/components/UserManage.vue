@@ -75,17 +75,20 @@ export default {
     }
   },
   mounted() {
-    this.axios({
-      method: "get",
-      url: "/api/user/getAll",
-    }).then(resp => {
-      this.user_items = resp.data['users'];
-    }).catch(e => {
-      console.log(e);
-      this.$refs['fail'].show();
-    })
+    this.get_all_user();
   },
   methods: {
+    get_all_user() {
+      this.axios({
+        method: "get",
+        url: "/api/user/getAll"
+      }).then(resp => {
+        this.user_items = resp.data['users'];
+      }).catch(e => {
+        console.log(e);
+        this.$refs['fail'].show();
+      });
+    },
     create_or_alter_user() {
       if (this.username != null && this.new_password != null && this.new_access_level != null) {
         this.axios({
@@ -99,6 +102,7 @@ export default {
         }).then(resp => {
           if (resp.data === "success") {
             this.$refs['success'].show();
+            this.get_all_user();
           } else {
             this.$refs['fail'].show();
           }
@@ -118,6 +122,7 @@ export default {
         }).then(resp => {
           if (resp.data === "success") {
             this.$refs['success'].show();
+            this.get_all_user();
           } else {
             this.$refs['fail'].show();
           }

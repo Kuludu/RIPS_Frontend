@@ -99,33 +99,33 @@ export default {
         method: "get",
         url: "/api/bigdata/refresh"
       }).then(resp => {
-        this.refresh_items = resp.data['fresh_setting'];
+        this.refresh_items = resp.data['refresh_setting'];
       }).catch(e => {
         console.log(e);
         this.$refs['fail'].show();
-      })
+      });
     },
     get_refresh_time() {
       this.axios({
         method: "get",
         url: "/api/bigdata/refreshTime"
       }).then(resp => {
-        this.refresh_time = resp.data['fresh_time'];
+        this.refresh_time = resp.data['refresh_time'];
       }).catch(e => {
         console.log(e);
         this.$refs['fail'].show();
-      })
+      });
     },
     get_refresh_status() {
       this.axios({
         method: "get",
         url: "/api/bigdata/refreshStatus"
       }).then(resp => {
-        this.update_status_items = resp.data['fresh_status'];
+        this.update_status_items = resp.data['refresh_status'];
       }).catch(e => {
         console.log(e);
         this.$refs['fail'].show();
-      })
+      });
     },
     enable_refresh() {
       let onEnable = [];
@@ -136,18 +136,21 @@ export default {
         method: "post",
         url: "/api/bigdata/refresh/enable",
         data: qs.stringify({
-          situation_id: onEnable
+          site_id: onEnable
+        }, {
+          arrayFormat: 'repeat'
         })
       }).then(resp => {
         if (resp.data === "success") {
           this.$refs['success'].show();
+          this.get_refresh_setting();
         } else {
           this.$refs['fail'].show();
         }
       }).catch(e => {
         console.log(e);
         this.$refs['fail'].show();
-      })
+      });
     },
     disable_refresh() {
       let onDisable = [];
@@ -156,20 +159,23 @@ export default {
       });
       this.axios({
         method: "post",
-        url: "/api/bigdata/refresh/enable",
+        url: "/api/bigdata/refresh/disable",
         data: qs.stringify({
-          situation_id: onDisable
+          site_id: onDisable
+        }, {
+          arrayFormat: 'repeat'
         })
       }).then(resp => {
         if (resp.data === "success") {
           this.$refs['success'].show();
+          this.get_refresh_setting();
         } else {
           this.$refs['fail'].show();
         }
       }).catch(e => {
         console.log(e);
         this.$refs['fail'].show();
-      })
+      });
     },
     submit_refresh_time() {
       this.axios({
@@ -184,10 +190,11 @@ export default {
         } else {
           this.$refs['fail'].show();
         }
+        this.get_refresh_time();
       }).catch(e => {
         console.log(e);
         this.$refs['fail'].show();
-      })
+      });
     }
   }
 }
