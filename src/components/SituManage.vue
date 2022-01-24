@@ -116,13 +116,13 @@ export default {
       })
     },
     onRowSelected(items) {
-      this.selected = items;
+      this.selected = items['ID'];
     },
     deleteSituation() {
       if (this.selected.length > 0) {
         let onDelete = [];
         this.selected.forEach(item => {
-          onDelete.push(item["ID"]);
+          onDelete.push(item['ID']);
         })
         this.axios({
           method: "post",
@@ -151,7 +151,7 @@ export default {
       if (this.selected.length > 0) {
         let onActivate = [];
         this.selected.forEach(item => {
-          onActivate.push(item["ID"]);
+          onActivate.push(item['ID']);
         })
         this.axios({
           method: "post",
@@ -180,7 +180,7 @@ export default {
       if (this.selected.length > 0) {
         let onDeactivate = [];
         this.selected.forEach(item => {
-          onDeactivate.push(item["ID"]);
+          onDeactivate.push(item['ID']);
         })
         this.axios({
           method: "post",

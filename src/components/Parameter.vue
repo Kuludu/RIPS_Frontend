@@ -94,7 +94,7 @@ export default {
       if (this.line_selected != null && this.site_selected != null) {
         this.axios({
           method: "post",
-          url: "/api/parameter/getThreshold",
+          url: "/api/parameter/threshold/get",
           data: qs.stringify({
             line: this.line_selected,
             site: this.site_selected,
@@ -113,7 +113,7 @@ export default {
       if (this.line_selected != null && this.site_selected != null && this.new_threshold != null) {
         this.axios({
           method: "post",
-          url: "/api/parameter/setThreshold",
+          url: "/api/parameter/threshold/set",
           data: qs.stringify({
             line: this.line_selected,
             site: this.site_selected,

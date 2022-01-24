@@ -58,14 +58,14 @@ export default {
       event.preventDefault()
       this.axios({
         method: "post",
-        url: "/api/login",
+        url: "/api/user/login",
         data: qs.stringify({
           username: this.form.username,
           password: this.form.password
         })
       }).then(resp => {
         if (resp.data === "success") {
-          this.$router.push({path: '/admin/parameter'})
+          this.$router.push({path: '/admin/situation'})
         } else {
           this.$refs['fail'].show()
         }
