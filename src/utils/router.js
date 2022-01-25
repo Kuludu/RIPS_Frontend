@@ -11,7 +11,7 @@ import Parameter from "@/components/Parameter";
 import SituManage from "@/components/SituManage";
 import BigData from "@/components/BigData";
 import UserManage from "@/components/UserManage";
-import Complex from "@/components/Complex";
+import Complex_1 from "@/components/Complex_1";
 
 
 const routes = [
@@ -76,7 +76,7 @@ const routes = [
         name: 'history',
         component: History,
         meta: {
-            title: '轨道交通智能预测系统-历史数据',
+            title: '轨道交通智能预测系统-简单查询',
         }
     },
     {
@@ -120,11 +120,11 @@ const routes = [
         }
     },
     {
-        path: '/complex/:id',
-        name: 'complex',
-        component: Complex,
+        path: '/complex/1',
+        name: 'complex_1',
+        component: Complex_1,
         meta: {
-            title: '轨道交通智能预测系统-复杂查询'
+            title: '轨道交通智能预测系统-站点出/入动态图'
         }
     }
 ]
