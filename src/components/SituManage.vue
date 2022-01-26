@@ -14,16 +14,6 @@
               selectable
               @row-selected="onRowSelected"
           >
-            <template #cell(selected)="{ rowSelected }">
-              <template v-if="rowSelected">
-                <span aria-hidden="true">&check;</span>
-                <span class="sr-only">Selected</span>
-              </template>
-              <template v-else>
-                <span aria-hidden="true">&nbsp;</span>
-                <span class="sr-only">Not selected</span>
-              </template>
-            </template>
             <template #table-caption>当前全部特情</template>
           </b-table>
           <p>

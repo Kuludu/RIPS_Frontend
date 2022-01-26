@@ -12,18 +12,7 @@
               select-mode="multi"
               selectable
               @row-selected="onRowSelected"
-          >
-            <template #cell(selected)="{ rowSelected }">
-              <template v-if="rowSelected">
-                <span aria-hidden="true">&check;</span>
-                <span class="sr-only">Selected</span>
-              </template>
-              <template v-else>
-                <span aria-hidden="true">&nbsp;</span>
-                <span class="sr-only">Not selected</span>
-              </template>
-            </template>
-          </b-table>
+          />
           <b-button-group>
             <b-button variant="primary" @click="enable_refresh">启用</b-button>
             <b-button variant="primary" @click="disable_refresh">停止</b-button>

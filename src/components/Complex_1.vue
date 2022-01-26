@@ -1,8 +1,8 @@
 <template>
   <div>
     <b-container>
-      <h1 class="mt-3 mb-3">复杂查询-站点出/入动态图</h1>
-      <b-card class="mb-5">
+      <b-card>
+        <h1 class="mt-3 mb-3">复杂查询-站点出/入动态图</h1>
         <b-card header="参数项">
           <b-form-group label="统计开始时间">
             <VueCtkDateTimePicker
