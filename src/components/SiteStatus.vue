@@ -15,7 +15,7 @@
       <b-col>
         <b-overlay :show="overlay_table" rounded="sm">
           <div class="chart_height">
-            <b-table :fields="fields" :items="items" fixed no-border-collapse sticky-header="800px" striped>
+            <b-table :fields="fields" :items="items" no-border-collapse sticky-header="800px" striped>
               <template #table-caption>5min出入站数据</template>
             </b-table>
           </div>
@@ -143,6 +143,6 @@ export default {
 
 <style scoped>
 .chart_height {
-  height: 900px;
+  height: 800px;
 }
 </style>

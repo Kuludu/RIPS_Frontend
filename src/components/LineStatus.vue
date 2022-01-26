@@ -15,7 +15,7 @@
       <b-col cols="4">
         <b-overlay :show="overlay_table" rounded="sm">
           <div class="chart_height">
-            <b-table :fields="fields" :items="items" fixed no-border-collapse sticky-header="800px" striped>
+            <b-table :fields="fields" :items="items" no-border-collapse sticky-header="850px" striped>
               <template #table-caption>5min出入站数据</template>
             </b-table>
           </div>
@@ -74,18 +74,6 @@ export default {
           },
           subtextStyle: {
             fontSize: 14,
-          }
-        },
-        visualMap: {
-          min: 0,
-          max: 100,
-          left: 'center',
-          orient: 'horizontal',
-          realtime: true,
-          text: ['高', '低'],
-          calculable: true,
-          inRange: {
-            color: ['green', 'red']
           }
         },
         xAxis: {
@@ -171,6 +159,6 @@ export default {
 
 <style scoped>
 .chart_height {
-  height: 900px;
+  height: 850px;
 }
 </style>

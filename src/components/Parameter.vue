@@ -1,41 +1,23 @@
 <template>
   <div>
-    <b-sidebar no-header-close title="管理界面选项" visible>
-      <div class="p-3 text-center">
-        <router-link to="/admin/parameter">
-          <b-button block pill size="lg" variant="primary">参数设置</b-button>
-        </router-link>
-      </div>
-      <div class="p-3 text-center">
-        <router-link to="/admin/situation">
-          <b-button block pill size="lg" variant="primary">特情管理</b-button>
-        </router-link>
-      </div>
-      <div class="p-3 text-center">
-        <router-link to="/admin/bigdata">
-          <b-button block pill size="lg" variant="primary">大数据管理</b-button>
-        </router-link>
-      </div>
-      <div class="p-3 text-center">
-        <router-link to="/admin/user">
-          <b-button block pill size="lg" variant="primary">用户管理</b-button>
-        </router-link>
-      </div>
-    </b-sidebar>
+    <AdminHeadBar/>
     <b-container class="col-6">
-      <h1 class="mt-3 mb-3">系统参数设置</h1>
-      <b-card title="站点压力阈值">
-        <b-row>
-          <b-col>
-            <b-form-select v-model="line_selected" :options="line_options"/>
-          </b-col>
-          <b-col>
-            <b-form-select v-model="site_selected" :options="site_options[this.line_selected]" @change="refresh_site"/>
-          </b-col>
-        </b-row>
-        <p class="mt-3">当前站点压力阈值：{{ this.site_pressure_threshold }}</p>
-        <b-form-input v-model="new_threshold" class="col-3" placeholder="请输入新设置的压力阈值" type="number"></b-form-input>
-        <b-button class="mt-3" @click="submit_threshold">提交</b-button>
+      <b-card>
+        <h1 class="mt-3 mb-3">系统参数设置</h1>
+        <b-card title="站点压力阈值">
+          <b-row>
+            <b-col>
+              <b-form-select v-model="line_selected" :options="line_options"/>
+            </b-col>
+            <b-col>
+              <b-form-select v-model="site_selected" :options="site_options[this.line_selected]"
+                             @change="refresh_site"/>
+            </b-col>
+          </b-row>
+          <p class="mt-3">当前站点压力阈值：{{ this.site_pressure_threshold }}</p>
+          <b-form-input v-model="new_threshold" class="col-3" placeholder="请输入新设置的压力阈值" type="number"></b-form-input>
+          <b-button class="mt-3" @click="submit_threshold">提交</b-button>
+        </b-card>
       </b-card>
     </b-container>
     <b-modal ref="success" header-bg-variant="success" title="轨道交通智能预测系统-参数设置">
@@ -51,10 +33,12 @@
 </template>
 
 <script>
+import AdminHeadBar from "@/components/AdminHeadBar";
 import qs from "qs";
 
 export default {
   name: "Parameter",
+  components: {AdminHeadBar},
   data: function () {
     return {
       line_selected: null,

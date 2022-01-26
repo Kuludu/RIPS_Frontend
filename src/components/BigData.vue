@@ -1,64 +1,44 @@
 <template>
   <div>
-    <b-sidebar no-header-close title="管理界面选项" visible>
-      <div class="p-3 text-center">
-        <router-link to="/admin/parameter">
-          <b-button block pill size="lg" variant="primary">参数设置</b-button>
-        </router-link>
-      </div>
-      <div class="p-3 text-center">
-        <router-link to="/admin/situation">
-          <b-button block pill size="lg" variant="primary">特情管理</b-button>
-        </router-link>
-      </div>
-      <div class="p-3 text-center">
-        <router-link to="/admin/bigdata">
-          <b-button block pill size="lg" variant="primary">大数据管理</b-button>
-        </router-link>
-      </div>
-      <div class="p-3 text-center">
-        <router-link to="/admin/user">
-          <b-button block pill size="lg" variant="primary">用户管理</b-button>
-        </router-link>
-      </div>
-    </b-sidebar>
+    <AdminHeadBar/>
     <b-container class="col-6">
-      <h1 class="mt-3 mb-3">大数据管理</h1>
-      <b-card title="站点刷新设置">
-        <b-table
-            ref="selectableTable"
-            :fields="refresh_fields"
-            :items="refresh_items"
-            responsive="sm"
-            select-mode="multi"
-            selectable
-            @row-selected="onRowSelected"
-        >
-          <template #cell(selected)="{ rowSelected }">
-            <template v-if="rowSelected">
-              <span aria-hidden="true">&check;</span>
-              <span class="sr-only">Selected</span>
+      <b-card>
+        <h1 class="mt-3 mb-3">大数据管理</h1>
+        <b-card title="站点刷新设置">
+          <b-table
+              ref="selectableTable"
+              :fields="refresh_fields"
+              :items="refresh_items"
+              select-mode="multi"
+              selectable
+              @row-selected="onRowSelected"
+          >
+            <template #cell(selected)="{ rowSelected }">
+              <template v-if="rowSelected">
+                <span aria-hidden="true">&check;</span>
+                <span class="sr-only">Selected</span>
+              </template>
+              <template v-else>
+                <span aria-hidden="true">&nbsp;</span>
+                <span class="sr-only">Not selected</span>
+              </template>
             </template>
-            <template v-else>
-              <span aria-hidden="true">&nbsp;</span>
-              <span class="sr-only">Not selected</span>
-            </template>
-          </template>
-        </b-table>
-        <b-button-group>
-          <b-button variant="primary" @click="enable_refresh">启用</b-button>
-          <b-button variant="primary" @click="disable_refresh">停止</b-button>
-        </b-button-group>
-      </b-card>
-      <b-card class="mt-3" title="刷新设置">
-        <b-form-group label="刷新时间(分钟)">
-          <b-form-spinbutton id="sb-inline" v-model="refresh_time" inline></b-form-spinbutton>
-        </b-form-group>
-        <b-button variant="primary" @click="submit_refresh_time">提交</b-button>
-      </b-card>
-      <b-card class="mt-3" title="数据更新状态查询">
-        <b-table :fields="update_status_fields" :items="update_status_items" hover striped/>
-        <b-button variant="primary" @click="get_refresh_status">刷新</b-button>
+          </b-table>
+          <b-button-group>
+            <b-button variant="primary" @click="enable_refresh">启用</b-button>
+            <b-button variant="primary" @click="disable_refresh">停止</b-button>
+          </b-button-group>
+        </b-card>
+        <b-card class="mt-3" title="刷新设置">
+          <b-form-group label="刷新时间(分钟)">
+            <b-form-spinbutton id="sb-inline" v-model="refresh_time" inline></b-form-spinbutton>
+          </b-form-group>
+          <b-button variant="primary" @click="submit_refresh_time">提交</b-button>
+        </b-card>
+        <b-card class="mt-3" title="数据更新状态查询">
+          <b-table :fields="update_status_fields" :items="update_status_items" hover striped/>
+          <b-button variant="primary" @click="get_refresh_status">刷新</b-button>
+        </b-card>
       </b-card>
     </b-container>
     <b-modal ref="success" header-bg-variant="success" title="轨道交通智能预测系统-大数据管理">
@@ -71,10 +51,12 @@
 </template>
 
 <script>
+import AdminHeadBar from "@/components/AdminHeadBar";
 import qs from "qs";
 
 export default {
   name: "BigData",
+  components: {AdminHeadBar},
   data: function () {
     return {
       refresh_fields: ["ID", "线路归属", "站点归属", "是否启用"],

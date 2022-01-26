@@ -1,96 +1,79 @@
 <template>
   <div>
-    <b-sidebar no-header-close title="管理界面选项" visible>
-      <div class="p-3 text-center">
-        <router-link to="/admin/parameter">
-          <b-button block pill size="lg" variant="primary">参数设置</b-button>
-        </router-link>
-      </div>
-      <div class="p-3 text-center">
-        <router-link to="/admin/situation">
-          <b-button block pill size="lg" variant="primary">特情管理</b-button>
-        </router-link>
-      </div>
-      <div class="p-3 text-center">
-        <router-link to="/admin/bigdata">
-          <b-button block pill size="lg" variant="primary">大数据管理</b-button>
-        </router-link>
-      </div>
-      <div class="p-3 text-center">
-        <router-link to="/admin/user">
-          <b-button block pill size="lg" variant="primary">用户管理</b-button>
-        </router-link>
-      </div>
-    </b-sidebar>
+    <AdminHeadBar/>
     <b-container class="col-6">
-      <h1 class="mt-3 mb-3">特情管理</h1>
-      <b-card title="特情面板">
-        <b-table
-            ref="selectableTable"
-            :fields="fields"
-            :items="items"
-            responsive="sm"
-            select-mode="multi"
-            selectable
-            @row-selected="onRowSelected"
-        >
-          <template #cell(selected)="{ rowSelected }">
-            <template v-if="rowSelected">
-              <span aria-hidden="true">&check;</span>
-              <span class="sr-only">Selected</span>
+      <b-card>
+        <h1 class="mt-3 mb-3">特情管理</h1>
+        <b-card title="特情面板">
+          <b-table
+              ref="selectableTable"
+              :fields="fields"
+              :items="items"
+              responsive="sm"
+              select-mode="multi"
+              selectable
+              @row-selected="onRowSelected"
+          >
+            <template #cell(selected)="{ rowSelected }">
+              <template v-if="rowSelected">
+                <span aria-hidden="true">&check;</span>
+                <span class="sr-only">Selected</span>
+              </template>
+              <template v-else>
+                <span aria-hidden="true">&nbsp;</span>
+                <span class="sr-only">Not selected</span>
+              </template>
             </template>
-            <template v-else>
-              <span aria-hidden="true">&nbsp;</span>
-              <span class="sr-only">Not selected</span>
-            </template>
-          </template>
-          <template #table-caption>当前全部特情</template>
-        </b-table>
-        <p>
-          <b-button-group>
-            <b-button variant="primary" @click="deleteSituation">删除</b-button>
-            <b-button variant="primary" @click="activateSituation">激活</b-button>
-            <b-button variant="primary" @click="deactivateSituation">隐藏</b-button>
-          </b-button-group>
-        </p>
+            <template #table-caption>当前全部特情</template>
+          </b-table>
+          <p>
+            <b-button-group>
+              <b-button variant="primary" @click="deleteSituation">删除</b-button>
+              <b-button variant="primary" @click="activateSituation">激活</b-button>
+              <b-button variant="primary" @click="deactivateSituation">隐藏</b-button>
+            </b-button-group>
+          </p>
+        </b-card>
+        <b-card class="mt-3" title="发布特情">
+          <b-form-group
+              class="col-4"
+              label="特情名称:"
+          >
+            <b-form-input v-model="name" placeholder="请输入特情名称"></b-form-input>
+          </b-form-group>
+          <b-form-group
+              class="col-5"
+              label="发布时间:"
+          >
+            <VueCtkDateTimePicker
+                v-model="datetime"
+                button-now-translation="现在"
+                format="YYYY-MM-DD HH:mm"
+                label="请选择发布时间"/>
+          </b-form-group>
+          <b-button variant="primary" @click="createSituation">发布</b-button>
+        </b-card>
+        <b-modal ref="success" header-bg-variant="success" title="轨道交通智能预测系统-特情管理">
+          <p>操作成功!</p>
+        </b-modal>
+        <b-modal ref="fail" header-bg-variant="danger" title="轨道交通智能预测系统-特情管理">
+          <p>操作失败!您的登陆信息已过期或后端服务器错误。</p>
+        </b-modal>
+        <b-modal ref="info" header-bg-variant="info" title="轨道交通智能预测系统-特情管理">
+          <p>请选择或完整填写信息!</p>
+        </b-modal>
       </b-card>
-      <b-card class="mt-3" title="发布特情">
-        <b-form-group
-            class="col-4"
-            label="特情名称:"
-        >
-          <b-form-input v-model="name" placeholder="请输入特情名称"></b-form-input>
-        </b-form-group>
-        <b-form-group
-            class="col-5"
-            label="发布时间:"
-        >
-          <VueCtkDateTimePicker
-              v-model="datetime"
-              button-now-translation="现在"
-              format="YYYY-MM-DD HH:mm"
-              label="请选择发布时间"/>
-        </b-form-group>
-        <b-button variant="primary" @click="createSituation">发布</b-button>
-      </b-card>
-      <b-modal ref="success" header-bg-variant="success" title="轨道交通智能预测系统-特情管理">
-        <p>操作成功!</p>
-      </b-modal>
-      <b-modal ref="fail" header-bg-variant="danger" title="轨道交通智能预测系统-特情管理">
-        <p>操作失败!您的登陆信息已过期或后端服务器错误。</p>
-      </b-modal>
-      <b-modal ref="info" header-bg-variant="info" title="轨道交通智能预测系统-特情管理">
-        <p>请选择或完整填写信息!</p>
-      </b-modal>
     </b-container>
   </div>
 </template>
 
 <script>
+import AdminHeadBar from "@/components/AdminHeadBar";
 import qs from "qs";
 
 export default {
   name: "SituManage",
+  components: {AdminHeadBar},
   data: function () {
     return {
       name: null,

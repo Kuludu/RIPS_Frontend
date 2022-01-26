@@ -1,8 +1,10 @@
 <template>
   <div>
     <b-container class="text-center">
-      <h1 class="mt-3 mb-3">当前轨道交通系统特殊情况</h1>
-      <b-table :fields="fields" :items="items" fixed striped/>
+      <b-card>
+        <h1 class="mt-3 mb-3">当前轨道交通系统特殊情况</h1>
+        <b-table :fields="fields" :items="items" fixed striped/>
+      </b-card>
     </b-container>
     <b-modal ref="fail" header-bg-variant="danger" title="轨道交通智能预测系统">
       <p>后端服务器错误。</p>

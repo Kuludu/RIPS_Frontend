@@ -22,16 +22,16 @@ Vue.prototype.axios = axios;
 Vue.prototype.echarts = echarts;
 
 const router = new VueRouter({
-  routes: routes
+    routes: routes
 })
 router.beforeEach((to, from, next) => {
-  if (to.meta.title) {
-    document.title = to.meta.title;
-  }
-  next();
+    if (to.meta.title) {
+        document.title = to.meta.title;
+    }
+    next();
 })
 
 new Vue({
-  router,
-  render: h => h(App)
+    router,
+    render: h => h(App)
 }).$mount('#app')

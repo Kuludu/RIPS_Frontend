@@ -1,12 +1,8 @@
 <template>
-  <div>
-    <footer class="bg-light fixed-bottom">
-      <b-row align-h="end">
-        <b-col cols="3" class="p-2 footer text-center" style="background-color: rgba(0, 0, 0, 0.2);">
-          加载时间（本地）：{{ getTime() }}
-          <b-button @click="refresh">刷新</b-button>
-        </b-col>
-      </b-row>
+  <div class="mx-0">
+    <footer class="p-2 bg-light mt-5 text-center fixed-bottom">
+      页面加载时间（本地）：{{ getTime() }}
+      <b-button @click="refresh">刷新</b-button>
     </footer>
   </div>
 </template>
@@ -26,8 +22,5 @@ export default {
 </script>
 
 <style scoped>
-.footer {
-  position: absolute;
-  bottom: 0;
-}
+
 </style>

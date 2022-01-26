@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <HeadBar />
-    <router-view></router-view>
-    <FootBar />
+    <HeadBar/>
+    <router-view class="margin"/>
+    <FootBar/>
   </div>
 </template>
 
@@ -20,5 +20,8 @@ export default {
 </script>
 
 <style>
-
+.margin {
+  margin-top: 100px;
+  margin-bottom: 70px;
+}
 </style>
