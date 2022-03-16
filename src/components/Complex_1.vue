@@ -4,6 +4,17 @@
       <b-card>
         <h1 class="mt-3 mb-3">复杂查询-站点出/入动态图</h1>
         <b-card header="参数项">
+          <b-form-group label="线路选择">
+            <b-form-select v-model="line_selected">
+              <b-form-select-option value="null">请选择线路</b-form-select-option>
+              <b-form-select-option disabled value="1">1号线</b-form-select-option>
+              <b-form-select-option disabled value="2">2号线</b-form-select-option>
+              <b-form-select-option disabled value="3">3号线</b-form-select-option>
+              <b-form-select-option disabled value="4">4号线</b-form-select-option>
+              <b-form-select-option value="5">5号线</b-form-select-option>
+              <b-form-select-option disabled value="6">6号线</b-form-select-option>
+            </b-form-select>
+          </b-form-group>
           <b-form-group label="统计开始时间">
             <VueCtkDateTimePicker
                 v-model="time_begin"
@@ -54,6 +65,7 @@ export default {
   name: "Complex_1",
   data: function () {
     return {
+      line_selected: null,
       time_begin: null,
       time_end: null,
       overlay_show: false,
@@ -92,12 +104,13 @@ export default {
   },
   methods: {
     submit() {
-      if (this.time_begin != null && this.time_end != null) {
+      if (this.line_selected != null && this.time_begin != null && this.time_end != null) {
         this.overlay_show = true;
         this.axios({
           method: "post",
           url: "/api/complex/1",
           data: qs.stringify({
+            line: this.line_selected,
             time_begin: this.time_begin,
             time_end: this.time_end
           })
