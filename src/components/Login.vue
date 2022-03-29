@@ -2,7 +2,7 @@
   <div>
     <b-container class="col-4 align-middle">
       <b-card>
-        <h1 class="mt-3 mb-3">管理员登陆</h1>
+        <h1 class="mt-3 mb-3">管理员登录</h1>
         <b-form @submit="login">
           <b-form-group
               id="username-group"

@@ -24,7 +24,7 @@
       </b-nav-item>
       <b-nav-item>
         <router-link to="/admin/login">
-          <b-button variant="outline-primary">管理登陆</b-button>
+          <b-button variant="outline-primary">管理登录</b-button>
         </router-link>
       </b-nav-item>
     </b-navbar-nav>

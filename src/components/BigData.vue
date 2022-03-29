@@ -34,7 +34,7 @@
       <p>操作成功!</p>
     </b-modal>
     <b-modal ref="fail" header-bg-variant="danger" title="轨道交通智能预测系统-大数据管理">
-      <p>操作失败!您的登陆信息已过期或后端服务器错误。</p>
+      <p>操作失败!您的登录信息已过期或后端服务器错误。</p>
     </b-modal>
   </div>
 </template>

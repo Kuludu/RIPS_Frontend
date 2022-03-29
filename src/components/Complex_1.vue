@@ -53,7 +53,7 @@
       <p>请选择或完整填写信息!</p>
     </b-modal>
     <b-modal ref="fail" header-bg-variant="danger" title="轨道交通智能预测系统-复杂查询">
-      <p>操作失败!您的登陆信息已过期或后端服务器错误。</p>
+      <p>后端服务器错误。</p>
     </b-modal>
   </div>
 </template>
