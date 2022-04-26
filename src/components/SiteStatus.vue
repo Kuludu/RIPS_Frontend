@@ -126,7 +126,7 @@ export default {
     }).catch(e => {
       console.log(e);
       this.$refs['fail'].show();
-    })
+    });
     this.axios({
       method: "get",
       url: "/api/traffic/" + this.$route.params.line + "/" + this.$route.params.site,
